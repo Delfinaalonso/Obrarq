@@ -49,7 +49,7 @@
   .divider-bordo-crema{background:linear-gradient(to bottom, var(--bordo) 0%, var(--bordo) 15%, var(--crema) 85%, var(--crema) 100%);}
   .divider-white-crema{height:90px; margin:-45px 0; background:linear-gradient(to bottom, var(--white) 0%, var(--white) 15%, var(--crema) 85%, var(--crema) 100%);}
   .divider-crema-white{height:90px; margin:-45px 0; background:linear-gradient(to bottom, var(--crema) 0%, var(--crema) 15%, var(--white) 85%, var(--white) 100%);}
-  .divider-crema-ink{background:linear-gradient(to bottom, var(--crema) 0%, var(--crema) 15%, var(--ink) 85%, var(--ink) 100%);}
+  .divider-crema-ink{background:none;}
   .divider-ink-bordodeep{height:100px; margin:-50px 0; background:linear-gradient(to bottom, var(--ink) 0%, var(--ink) 15%, var(--bordo-deep) 85%, var(--bordo-deep) 100%);}
   .eyebrow{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.18em; text-transform:uppercase;}
   .btn{
@@ -306,7 +306,8 @@
     filter:grayscale(100%); opacity:.65; transition:filter .35s, opacity .35s, transform .35s;
   }
   .logo-chip:hover img{filter:grayscale(0%); opacity:1; transform:scale(1.05);}
-  .sponsor-form-wrap{max-width:640px;}
+  .sponsor-form-wrap{max-width:640px; margin:0 auto; text-align:center;}
+  .sponsor-form-wrap .sponsor-form{text-align:left;}
   .sponsor-form{
     display:none; flex-direction:column; gap:16px; margin-top:28px; border:1.5px solid var(--line); border-radius:10px; padding:28px;
     background:var(--crema);
@@ -362,7 +363,7 @@
   .info-row a:hover{color:var(--naranja);}
 
   footer{
-    background:var(--bordo-deep); color:#cbb9c0; padding:50px 5vw 28px;
+    background:var(--bordo-deep); color:#cbb9c0; padding:26px 5vw;
   }
   .footer-top{display:flex; justify-content:space-between; flex-wrap:wrap; gap:30px; padding-bottom:34px; border-bottom:1px solid var(--line-dark); margin-bottom:24px;}
   .footer-top .logo{color:var(--crema);}
@@ -704,35 +705,12 @@
         <div class="ico">@</div>
         <div><h4>Instagram</h4><a href="https://www.instagram.com/obrarq.lp" target="_blank" rel="noopener">@obrarq.lp</a></div>
       </div>
-      <a href="https://wa.me/5492954200393" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:12px;">Escribinos por WhatsApp →</a>
     </div>
   </div>
 </section>
 
 <div class="soft-divider divider-ink-bordodeep" aria-hidden="true"></div>
 <footer>
-  <div class="footer-top">
-    <div class="logo"><span class="sq"></span>obrarq</div>
-    <div class="footer-links">
-      <div>
-        <h5>Ciclo</h5>
-        <a href="#cronograma">Encuentros 2026</a>
-        <a href="#nosotros">Nosotros</a>
-        <a href="#galeria">Galería</a>
-      </div>
-      <div>
-        <h5>Comunidad</h5>
-        <a href="#sponsors">Sponsors</a>
-        <a href="#faq">FAQ</a>
-      </div>
-      <div>
-        <h5>Contacto</h5>
-        <a href="https://wa.me/5492954200393" target="_blank" rel="noopener">WhatsApp</a>
-        <a href="mailto:obrarq.lp@gmail.com">Email</a>
-        <a href="https://www.instagram.com/obrarq.lp" target="_blank" rel="noopener">Instagram</a>
-      </div>
-    </div>
-  </div>
   <div class="footer-bottom">
     <span>OBRARQ © 2026 — Encuentro Constructivo, Santa Rosa, La Pampa</span>
     <span>Impulsado por Arq. Angie Pérez Brusco</span>
