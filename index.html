@@ -83,10 +83,9 @@
     width:58px; height:58px; border-radius:50%; background:#25D366;
     display:flex; align-items:center; justify-content:center;
     box-shadow:0 8px 22px rgba(0,0,0,.28);
-    transition:transform .25s, opacity .3s ease;
+    transition:transform .25s;
   }
   .whatsapp-float:hover{transform:scale(1.08);}
-  .whatsapp-float.hide{opacity:0; transform:scale(.7); pointer-events:none;}
   .whatsapp-float svg{width:30px; height:30px;}
   .whatsapp-float::after{
     content:''; position:absolute; inset:0; border-radius:50%; background:#25D366;
@@ -759,16 +758,6 @@
 </footer>
 
 <script>
-  // hide floating WhatsApp button near the footer so it doesn't overlap the text
-  const waFloat = document.getElementById('waFloat');
-  const footerEl = document.querySelector('footer');
-  if(waFloat && footerEl){
-    const footerIo = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ waFloat.classList.toggle('hide', e.isIntersecting); });
-    },{threshold:0, rootMargin:'0px 0px -10px 0px'});
-    footerIo.observe(footerEl);
-  }
-
   // mobile nav toggle
   const navToggle = document.getElementById('navToggle');
   const navMenu = document.getElementById('navMenu');
