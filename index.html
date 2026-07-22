@@ -38,24 +38,19 @@
   .reveal{opacity:0; transform:translateY(36px); transition:opacity .8s ease, transform .8s ease;}
   .reveal.in{opacity:1; transform:translateY(0);}
 
-  /* BLUEPRINT GRID — sutil textura que une visualmente las secciones */
-  .blueprint{
-    --grid-color: rgba(92,26,46,.09);
-    background-image:
-      linear-gradient(var(--grid-color) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-    background-size: 46px 46px;
-    background-position: center top;
+ /* SOFT DIVIDERS — transicion de color real entre secciones + linea de acento animada */
+  .soft-divider{height:150px; margin:-75px 0; position:relative; pointer-events:none; z-index:2; overflow:hidden;}
+  .soft-divider::after{
+    content:''; position:absolute; left:0; right:0; top:50%; height:2px; transform:translateY(-50%);
+    background:linear-gradient(90deg, transparent, var(--naranja), var(--rosa), var(--naranja), transparent);
+    background-size:200% 100%; opacity:.55; animation:threadMove 5s linear infinite;
   }
-  .blueprint.on-dark{ --grid-color: rgba(245,233,220,.12); }
-
-  /* SOFT DIVIDERS — cortes difuminados entre secciones en vez de linea recta */
-  .soft-divider{height:120px; margin:-60px 0; position:relative; pointer-events:none; filter:blur(30px); z-index:2;}
-  .divider-bordo-crema{background:linear-gradient(to bottom, var(--bordo) 0%, var(--crema) 100%);}
-  .divider-white-crema{height:70px; margin:-35px 0; filter:blur(18px); background:linear-gradient(to bottom, var(--white) 0%, var(--crema) 100%);}
-  .divider-crema-white{height:70px; margin:-35px 0; filter:blur(18px); background:linear-gradient(to bottom, var(--crema) 0%, var(--white) 100%);}
-  .divider-crema-ink{background:linear-gradient(to bottom, var(--crema) 0%, var(--ink) 100%);}
-  .divider-ink-bordodeep{height:80px; margin:-40px 0; filter:blur(20px); background:linear-gradient(to bottom, var(--ink) 0%, var(--bordo-deep) 100%);}
+  @keyframes threadMove{from{background-position:0% 0;} to{background-position:-200% 0;}}
+  .divider-bordo-crema{background:linear-gradient(to bottom, var(--bordo) 0%, var(--bordo) 15%, var(--crema) 85%, var(--crema) 100%);}
+  .divider-white-crema{height:90px; margin:-45px 0; background:linear-gradient(to bottom, var(--white) 0%, var(--white) 15%, var(--crema) 85%, var(--crema) 100%);}
+  .divider-crema-white{height:90px; margin:-45px 0; background:linear-gradient(to bottom, var(--crema) 0%, var(--crema) 15%, var(--white) 85%, var(--white) 100%);}
+  .divider-crema-ink{background:linear-gradient(to bottom, var(--crema) 0%, var(--crema) 15%, var(--ink) 85%, var(--ink) 100%);}
+  .divider-ink-bordodeep{height:100px; margin:-50px 0; background:linear-gradient(to bottom, var(--ink) 0%, var(--ink) 15%, var(--bordo-deep) 85%, var(--bordo-deep) 100%);}
   .eyebrow{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.18em; text-transform:uppercase;}
   .btn{
     display:inline-flex; align-items:center; gap:10px; padding:16px 28px; border-radius:3px;
@@ -423,7 +418,7 @@
 </section>
 
 <div class="soft-divider divider-bordo-crema" aria-hidden="true"></div>
-<section class="resumen blueprint" id="resumen">
+<section class="resumen" id="resumen">
   <div class="wrap resumen-grid">
     <div class="reveal">
       <div class="resumen-photo">
@@ -444,7 +439,7 @@
   </div>
 </section>
 
-<section class="cronograma blueprint" id="cronograma">
+<section class="cronograma" id="cronograma">
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow" style="color:var(--rosa);">Cronograma</span>
@@ -503,7 +498,7 @@
 </section>
 
 <div class="soft-divider divider-white-crema" aria-hidden="true"></div>
-<section class="nosotros blueprint" id="nosotros">
+<section class="nosotros" id="nosotros">
   <div class="wrap nosotros-grid">
     <div class="reveal">
       <div class="section-head" style="margin-bottom:32px;">
@@ -525,7 +520,7 @@
   </div>
 </section>
 
-<section class="galeria blueprint" id="galeria">
+<section class="galeria" id="galeria">
   <div class="wrap">
     <div class="section-head center reveal">
       <span class="eyebrow" style="color:var(--naranja);">Galería</span>
@@ -585,7 +580,7 @@
 </section>
 
 <div class="soft-divider divider-crema-white" aria-hidden="true"></div>
-<section class="sponsors blueprint" id="sponsors">
+<section class="sponsors" id="sponsors">
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow" style="color:var(--rosa);">Sponsors</span>
@@ -638,7 +633,7 @@
 </section>
 
 <div class="soft-divider divider-white-crema" aria-hidden="true"></div>
-<section class="faq blueprint" id="faq">
+<section class="faq" id="faq">
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow" style="color:var(--naranja);">Preguntas frecuentes</span>
@@ -686,7 +681,7 @@
 </section>
 
 <div class="soft-divider divider-crema-ink" aria-hidden="true"></div>
-<section class="contacto blueprint on-dark" id="contacto">
+<section class="contacto" id="contacto">
   <div class="wrap">
     <div class="reveal contacto-solo">
       <div class="section-head center" style="margin-bottom:36px;">
