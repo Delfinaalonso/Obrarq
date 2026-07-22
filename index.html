@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OBRARQ — Encuentro Constructivo · Santa Rosa, La Pampa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bordo:#5C1A2E;
+    --bordo-deep:#3E0F20;
+    --naranja:#F2762E;
+    --rosa:#E63E71;
+    --crema:#F5E9DC;
+    --white:#FFFFFF;
+    --ink:#2B1520;
+    --gray:#8a7b82;
+    --azul:#2F6FED;
+    --line: rgba(43,21,32,.12);
+    --line-dark: rgba(245,233,220,.18);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Space Grotesk', sans-serif;
+    background:var(--crema);
+    color:var(--ink);
+    overflow-x:hidden;
+  }
+  .mono{font-family:'JetBrains Mono', monospace;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  ul{list-style:none;}
+  button{font-family:inherit; cursor:pointer;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 5vw;}
+  section{padding:110px 0;}
+  .reveal{opacity:0; transform:translateY(36px); transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  .eyebrow{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.18em; text-transform:uppercase;}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px; padding:16px 28px; border-radius:3px;
+    font-weight:600; font-size:15px; transition:transform .25s, box-shadow .25s; white-space:nowrap; border:none;
+  }
+  .btn-primary{background:var(--naranja); color:var(--white);}
+  .btn-primary:hover{transform:translateY(-3px); box-shadow:0 10px 24px rgba(242,118,46,.35);}
+  .btn-outline{border:1.5px solid var(--ink); background:transparent; color:var(--ink);}
+  .btn-outline:hover{background:var(--ink); color:var(--crema);}
+  .btn-light{background:var(--crema); color:var(--bordo);}
+  .btn-light:hover{transform:translateY(-3px);}
+
+  /* block confetti decor */
+  .blocks-decor span{position:absolute; display:block; border-radius:2px;}
+  @keyframes floatA{0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-14px) rotate(4deg);}}
+  @keyframes floatB{0%,100%{transform:translateY(0);} 50%{transform:translateY(16px);}}
+  @keyframes floatC{0%,100%{transform:translate(0,0);} 50%{transform:translate(-10px,10px);}}
+
+  /* WHATSAPP FLOAT BUTTON */
+  .whatsapp-float{
+    position:fixed; bottom:24px; right:24px; z-index:999;
+    width:58px; height:58px; border-radius:50%; background:#25D366;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 8px 22px rgba(0,0,0,.28);
+    transition:transform .25s;
+  }
+  .whatsapp-float:hover{transform:scale(1.08);}
+  .whatsapp-float svg{width:30px; height:30px;}
+  .whatsapp-float::after{
+    content:''; position:absolute; inset:0; border-radius:50%; background:#25D366;
+    animation:wa-pulse 2.2s ease-out infinite; z-index:-1;
+  }
+  @keyframes wa-pulse{
+    0%{transform:scale(1); opacity:.55;}
+    100%{transform:scale(1.7); opacity:0;}
+  }
+
+  /* HEADER */
+  header{
+    position:sticky; top:0; z-index:200;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 5vw;
+    background:rgba(245,233,220,.85); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .logo{display:flex; align-items:center; gap:8px; font-weight:800; font-size:22px; letter-spacing:-.01em; color:var(--bordo);}
+  .logo .sq{width:9px; height:9px; background:var(--naranja); display:inline-block;}
+  nav ul{display:none; gap:30px;}
+  nav a{font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--ink); opacity:.75; transition:.25s; position:relative;}
+  nav a:hover{opacity:1; color:var(--naranja);}
+  @media(min-width:900px){ nav ul{display:flex;} }
+  .header-cta{font-size:13px; padding:12px 20px;}
+
+  /* HERO */
+  .hero{
+    position:relative; padding:100px 0 0; overflow:hidden; background:var(--bordo); color:var(--crema);
+  }
+  .hero .blocks-decor{position:absolute; inset:0; z-index:1; pointer-events:none;}
+  .hero .blocks-decor span{position:absolute; display:block; border-radius:2px;}
+  .hero .blocks-decor span.lshape{border-radius:0;}
+  .hero .blocks-decor span.hollow{background:none !important; border:3px solid; border-radius:2px;}
+  /* filled blocks */
+  .hero .blocks-decor span:nth-child(1){top:10%; left:6%; width:34px; height:34px; background:var(--naranja); animation:floatA 6s ease-in-out infinite;}
+  .hero .blocks-decor span:nth-child(2){top:18%; right:9%; width:52px; height:28px; background:var(--rosa); animation:floatB 7s ease-in-out infinite;}
+  .hero .blocks-decor span:nth-child(3){bottom:28%; left:4%; width:20px; height:56px; background:var(--naranja); animation:floatC 8s ease-in-out infinite;}
+  .hero .blocks-decor span:nth-child(4){bottom:12%; right:15%; width:30px; height:30px; background:var(--crema); opacity:.55; animation:floatA 5.5s ease-in-out infinite;}
+  .hero .blocks-decor span:nth-child(5){top:42%; right:3%; width:18px; height:18px; background:var(--rosa); animation:floatB 6.5s ease-in-out infinite;}
+  /* new: bigger + hollow + L accents for more presence */
+  .hero .blocks-decor span:nth-child(6){top:8%; left:38%; width:24px; height:24px; border-color:var(--rosa); animation:floatB 9s ease-in-out infinite .5s;}
+  .hero .blocks-decor span:nth-child(7){bottom:38%; right:24%; width:40px; height:22px; background:var(--naranja); opacity:.85; animation:floatA 7.5s ease-in-out infinite 1s;}
+  .hero .blocks-decor span:nth-child(8){top:60%; left:12%; width:26px; height:26px; border-color:var(--crema); opacity:.6; animation:floatC 8.5s ease-in-out infinite .3s;}
+  .hero .blocks-decor span:nth-child(9){top:30%; left:22%; width:16px; height:16px; background:var(--rosa); opacity:.7; animation:floatA 6.2s ease-in-out infinite 1.4s;}
+  .hero .blocks-decor span:nth-child(10){bottom:20%; left:46%; width:38px; height:38px; background:var(--naranja); opacity:.18; animation:floatC 10s ease-in-out infinite .8s;}
+  .hero .blocks-decor span:nth-child(11){clip-path:polygon(0 0,55% 0,55% 55%,100% 55%,100% 100%,0 100%); top:70%; right:8%; width:44px; height:44px; background:var(--rosa); opacity:.8; animation:floatB 8s ease-in-out infinite .6s;}
+  .hero .blocks-decor span:nth-child(12){clip-path:polygon(0 0,55% 0,55% 55%,100% 55%,100% 100%,0 100%); top:6%; right:34%; width:30px; height:30px; background:var(--naranja); animation:floatA 7s ease-in-out infinite 1.2s;}
+
+  .hero-inner{position:relative; z-index:3; text-align:center; padding-bottom:64px;}
+  .hero .eyebrow{color:var(--naranja); display:inline-block; border:1px dashed var(--naranja); padding:6px 16px; border-radius:30px; margin-bottom:30px;
+    opacity:0; animation:fadeIn .7s .1s forwards;}
+  .hero h1{
+    font-size:clamp(38px,7.2vw,96px); font-weight:800; line-height:1.02; letter-spacing:-.02em; max-width:920px; margin:0 auto;
+  }
+  .hero h1 .line{display:block; overflow:hidden; padding:2px 0;}
+  .hero h1 .line span{display:inline-block; transform:translateY(115%); animation:riseUp .85s cubic-bezier(.2,.9,.2,1) forwards;}
+  .hero h1 .line:nth-child(1) span{animation-delay:.18s;}
+  .hero h1 .line:nth-child(2) span{animation-delay:.32s; color:var(--naranja);}
+  @keyframes riseUp{to{transform:translateY(0);}}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
+
+  .hero p{
+    max-width:620px; margin:28px auto 0; font-size:17px; line-height:1.65; color:#e9d9de;
+    opacity:0; animation:fadeIn .8s .5s forwards;
+  }
+  .hero .actions{display:flex; gap:16px; justify-content:center; margin-top:40px; flex-wrap:wrap; opacity:0; animation:fadeIn .8s .65s forwards;}
+
+  .marquee-strip{background:var(--naranja); color:var(--bordo-deep); overflow:hidden; white-space:nowrap; padding:14px 0; position:relative; z-index:3;}
+  .marquee-track{display:inline-block; animation:scroll 20s linear infinite;}
+  .marquee-track span{font-family:'JetBrains Mono',monospace; font-weight:600; font-size:14px; letter-spacing:.08em; margin-right:36px; text-transform:uppercase;}
+  @keyframes scroll{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+
+  /* SECTION HEAD generic */
+  .section-head{max-width:720px; margin-bottom:56px;}
+  .section-head .eyebrow{color:var(--naranja); margin-bottom:14px; display:block;}
+  .section-head h2{font-size:clamp(28px,4.2vw,48px); font-weight:800; letter-spacing:-.02em; line-height:1.08;}
+  .section-head p{margin-top:16px; font-size:16px; color:#5a4750; line-height:1.6;}
+  .center{text-align:center; margin-left:auto; margin-right:auto;}
+
+  /* RESUMEN (Ya pasó, y fue así) */
+  .resumen{background:var(--crema);}
+  .resumen-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;}
+  @media(max-width:840px){.resumen-grid{grid-template-columns:1fr;}}
+  .resumen-photo{
+    /* 9:16 — formato vertical (reel/story), misma proporción si más adelante es un <video>/embed real */
+    aspect-ratio:9/16; width:100%; max-width:320px; margin:0 auto; border-radius:14px; position:relative; overflow:hidden;
+    background:linear-gradient(135deg, var(--bordo), var(--bordo-deep));
+    display:flex; align-items:center; justify-content:center; flex-direction:column; gap:14px;
+  }
+  .resumen-photo::before{content:''; position:absolute; inset:0; background-image:repeating-linear-gradient(45deg, rgba(245,233,220,.06) 0 2px, transparent 2px 16px);}
+  .resumen-photo video{position:relative; z-index:1; width:100%; height:100%; object-fit:cover; display:block;}
+  /* si más adelante se reemplaza por <video>/<img> real dentro de .resumen-photo, agregar:
+     width:100%; height:100%; object-fit:cover; — así respeta el mismo marco 16:9 en mobile y desktop */
+  .resumen h2{font-size:clamp(30px,4.6vw,50px); font-weight:800; margin:16px 0 18px; line-height:1.1; color:var(--bordo);}
+  .resumen-copy p{font-size:16px; line-height:1.65; color:#3d2530; max-width:480px;}
+  .resumen-stats{display:flex; gap:0; margin:36px 0 8px; flex-wrap:nowrap; border-top:1.5px solid var(--line); padding-top:28px;}
+  .resumen-stats .stat{flex:0 0 auto; padding:0 24px 0 0; margin-right:24px; border-right:1.5px solid var(--line);}
+  .resumen-stats .stat:last-child{border-right:none; margin-right:0; padding-right:0;}
+  .resumen-stats .stat .val{font-family:'JetBrains Mono',monospace; font-size:clamp(30px,4vw,56px); font-weight:700; color:var(--naranja); line-height:1; white-space:nowrap;}
+  .resumen-stats .stat .val::after{content:attr(data-suffix);}
+  .resumen-stats .stat .label{font-size:11.5px; color:#5a4750; margin-top:8px; text-transform:uppercase; letter-spacing:.04em; white-space:nowrap;}
+  @media(max-width:420px){
+    .resumen-stats{gap:0;}
+    .resumen-stats .stat{padding-right:14px; margin-right:14px;}
+  }
+
+  /* NOSOTROS */
+  .nosotros{background:var(--crema);}
+  .nosotros-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:60px; align-items:start;}
+  @media(max-width:840px){.nosotros-grid{grid-template-columns:1fr;}}
+  .nosotros p{font-size:17px; line-height:1.75; margin-bottom:18px; color:#3d2530;}
+  .pull-quote{
+    font-size:clamp(22px,3vw,32px); font-style:italic; font-weight:600; color:var(--bordo); border-left:4px solid var(--naranja);
+    padding-left:22px; margin:36px 0;
+  }
+  .founder-card{
+    background:var(--bordo); color:var(--crema); border-radius:6px; padding:32px; position:relative; overflow:hidden;
+  }
+  .founder-card .tag{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em; color:var(--naranja); text-transform:uppercase;}
+  .founder-card h3{font-size:24px; margin-top:12px; font-weight:700;}
+  .founder-card p{font-size:14px; margin-top:14px; color:#e6d3da; line-height:1.6;}
+  .founder-card .block{position:absolute; width:60px; height:60px; background:var(--rosa); opacity:.25; bottom:-20px; right:-20px; border-radius:4px;}
+
+  /* CRONOGRAMA */
+  .cronograma{background:var(--white);}
+  .tabs{display:inline-flex; border:1.5px solid var(--ink); border-radius:30px; padding:5px; position:relative; margin-bottom:48px;}
+  .tab-slider{position:absolute; top:5px; bottom:5px; left:5px; width:150px; background:var(--ink); border-radius:24px; transition:transform .4s cubic-bezier(.7,0,.2,1); z-index:1;}
+  .tab-btn{position:relative; z-index:2; padding:12px 24px; font-family:'JetBrains Mono',monospace; font-size:13px; border-radius:24px; background:none; border:none; color:var(--ink); transition:color .3s;}
+  .tab-btn.active{color:var(--crema);}
+
+  .panel{display:none;}
+  .panel.active{display:grid; animation:panelIn .5s ease; gap:24px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));}
+  @keyframes panelIn{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
+
+  .charla-card{
+    border:1.5px solid var(--ink); border-radius:8px; padding:28px; position:relative; transition:transform .35s, box-shadow .35s;
+    background:var(--white);
+  }
+  .charla-card:hover{transform:translateY(-6px); box-shadow:0 16px 30px rgba(43,21,32,.1);}
+  .charla-card.past{filter:grayscale(1); opacity:.85;}
+  .charla-card .num{
+    position:absolute; top:-16px; left:24px; width:34px; height:34px; border-radius:50%; background:var(--naranja); color:var(--white);
+    display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:14px;
+  }
+  .charla-card .date{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--rosa); letter-spacing:.08em; margin-top:8px;}
+  .charla-card h3{font-size:21px; font-weight:700; margin:12px 0 12px; line-height:1.25;}
+  .charla-card .speakers{font-size:14px; color:#5a4750; line-height:1.6;}
+  .charla-card .speakers b{color:var(--ink);}
+  .charla-card .foot{margin-top:20px; display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;}
+  .status{font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; padding:6px 12px; border-radius:20px; border:1px solid var(--ink);}
+  .status.open{background:var(--naranja); border-color:var(--naranja); color:var(--white);}
+  .status.soon{color:var(--gray);}
+  .status.done{background:var(--ink); color:var(--crema); border-color:var(--ink);}
+  .charla-card .btn{padding:11px 18px; font-size:13px;}
+
+  /* tema-azul: fondo difuminado animado (magenta -> azul) para la charla de Urbanismo */
+  .charla-card.tema-azul{isolation:isolate;}
+  .charla-card.tema-azul .blob-wrap{position:absolute; inset:0; overflow:hidden; border-radius:8px; z-index:0;}
+  .charla-card.tema-azul .blob{position:absolute; border-radius:50%; filter:blur(30px); opacity:.9;}
+  .charla-card.tema-azul .blob.b1{width:70%; aspect-ratio:1; background:var(--rosa); top:-25%; left:-16%; animation:blobMove1 9s ease-in-out infinite;}
+  .charla-card.tema-azul .blob.b2{width:75%; aspect-ratio:1; background:var(--azul); bottom:-30%; right:-18%; animation:blobMove2 11s ease-in-out infinite;}
+  .charla-card.tema-azul .veil{position:absolute; inset:0; background:rgba(245,233,220,.55);}
+  .charla-card.tema-azul .num{z-index:2;}
+  .charla-card.tema-azul .date,
+  .charla-card.tema-azul h3,
+  .charla-card.tema-azul .speakers,
+  .charla-card.tema-azul .foot{position:relative; z-index:2;}
+  .charla-card.tema-azul h3{color:var(--bordo); text-shadow:0 1px 12px rgba(245,233,220,.6);}
+  .charla-card.tema-azul .speakers{color:#2e2a3d;}
+  @keyframes blobMove1{0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(14%,10%) scale(1.15);}}
+  @keyframes blobMove2{0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(-12%,-8%) scale(1.1);}}
+
+  /* GALERIA — cinta horizontal en movimiento, dos filas en direcciones opuestas */
+  .galeria{background:var(--crema); padding-left:0; padding-right:0;}
+  .galeria .wrap{margin-bottom:48px;}
+  .gal-marquee{overflow:hidden; margin-bottom:22px; -webkit-mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);}
+  .gal-track{display:flex; gap:18px; width:max-content; animation:galScrollL 46s linear infinite;}
+  .gal-track.rtl{animation-name:galScrollR;}
+  .gal-marquee:hover .gal-track{animation-play-state:paused;}
+  .gal-track img{
+    height:260px; width:auto; max-width:none; border-radius:10px; display:block; flex-shrink:0;
+    transition:transform .35s ease;
+  }
+  .gal-track img:hover{transform:scale(1.04) translateY(-4px);}
+  @keyframes galScrollL{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+  @keyframes galScrollR{from{transform:translateX(-50%);} to{transform:translateX(0);}}
+  @media(max-width:640px){ .gal-track img{height:180px;} }
+
+  /* SPONSORS */
+  .sponsors{background:var(--white);}
+  .logos-grid{display:flex; flex-wrap:wrap; gap:16px; margin-bottom:48px;}
+  .logo-chip{
+    border:1.5px solid var(--line); border-radius:6px; padding:20px 26px; font-weight:700; font-size:15px; color:var(--bordo);
+    background:var(--crema); transition:transform .3s, border-color .3s;
+  }
+  .logo-chip:hover{transform:translateY(-4px); border-color:var(--naranja);}
+  .sponsor-form-wrap{max-width:640px;}
+  .sponsor-form{
+    display:none; flex-direction:column; gap:16px; margin-top:28px; border:1.5px solid var(--line); border-radius:10px; padding:28px;
+    background:var(--crema);
+  }
+  .sponsor-form.show{display:flex; animation:panelIn .4s ease;}
+  .sponsor-form .form-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media(max-width:560px){ .sponsor-form .form-grid{grid-template-columns:1fr;} }
+  .sponsor-form input{
+    border:1px solid var(--line); border-radius:6px; padding:13px 15px; font-family:'Space Grotesk',sans-serif; font-size:14px;
+    background:var(--white); color:var(--ink);
+  }
+  .sponsor-form button{align-self:flex-start;}
+
+  /* FAQ */
+  .faq{background:var(--crema);}
+  .faq-list{max-width:760px;}
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-item:last-child{border-bottom:none;}
+  .faq-q{
+    width:100%; text-align:left; background:none; border:none; padding:20px 0; display:flex; align-items:baseline; gap:16px;
+    font-size:17px; color:var(--ink); cursor:pointer;
+  }
+  .faq-dot{width:7px; height:7px; flex-shrink:0; align-self:center; background:transparent; transition:background .3s;}
+  .faq-item.open .faq-dot{background:var(--naranja);}
+  .faq-idx{font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--gray); min-width:20px; font-weight:400; transition:color .3s, font-weight .3s;}
+  .faq-item.open .faq-idx{color:var(--naranja); font-weight:600;}
+  .faq-qtext{flex:1; font-weight:500; transition:font-weight .3s;}
+  .faq-item.open .faq-qtext{font-weight:700;}
+  .faq-q .plus{font-family:'JetBrains Mono',monospace; font-size:20px; color:var(--naranja); transition:transform .35s; flex-shrink:0;}
+  .faq-item.open .faq-q .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0; overflow:hidden; transition:max-height .4s cubic-bezier(.16,1,.3,1);}
+  .faq-a-inner{margin:0 0 22px 23px; padding-left:20px; border-left:2px solid var(--naranja);}
+  .faq-a p{font-size:15px; line-height:1.65; color:#5a4750; max-width:620px;}
+
+  /* CONTACTO */
+  .contacto{background:var(--ink); color:var(--crema);}
+  .contacto-solo{max-width:480px; margin:0 auto; text-align:center;}
+  .info-row{display:flex; gap:16px; margin-bottom:26px; align-items:flex-start; text-align:left;}
+  .info-row .ico{width:38px; height:38px; border-radius:50%; background:var(--naranja); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--white);}
+  .info-row h4{font-size:15px; margin-bottom:4px;}
+  .info-row p, .info-row a{font-size:14px; color:#cbb9c0;}
+  .info-row a:hover{color:var(--naranja);}
+
+  footer{
+    background:var(--bordo-deep); color:#cbb9c0; padding:50px 5vw 28px;
+  }
+  .footer-top{display:flex; justify-content:space-between; flex-wrap:wrap; gap:30px; padding-bottom:34px; border-bottom:1px solid var(--line-dark); margin-bottom:24px;}
+  .footer-top .logo{color:var(--crema);}
+  .footer-links{display:flex; gap:40px; flex-wrap:wrap;}
+  .footer-links div h5{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; color:var(--naranja); text-transform:uppercase; margin-bottom:12px;}
+  .footer-links a{display:block; font-size:14px; margin-bottom:8px; color:#cbb9c0;}
+  .footer-links a:hover{color:var(--crema);}
+  .footer-bottom{display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:12px; flex-wrap:wrap; gap:10px;}
+</style>
+</head>
+<body>
+
+<a href="https://wa.me/5492954200393?text=Hola!%20Quiero%20saber%20m%C3%A1s%20sobre%20Obrarq" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Escribinos por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.79 14.02c-.24.68-1.4 1.33-1.93 1.4-.49.07-1.11.1-1.79-.11-.41-.13-.95-.31-1.63-.6-2.87-1.24-4.74-4.13-4.88-4.32-.14-.19-1.17-1.56-1.17-2.97 0-1.41.74-2.11 1-2.4.26-.29.57-.36.76-.36s.38 0 .54.01c.18.01.4-.07.63.48.24.58.81 2 .88 2.14.07.14.12.31.02.5-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.75 1.24 1.61 2.01 1.11.99 2.05 1.3 2.34 1.45.29.14.46.12.63-.07.17-.19.72-.84.91-1.13.19-.29.38-.24.63-.14.26.1 1.63.77 1.91.91.29.14.48.21.55.33.07.12.07.7-.17 1.38z"/></svg>
+</a>
+
+<header>
+  <div class="logo"><span class="sq"></span>obrarq</div>
+  <nav><ul>
+    <li><a href="#cronograma">Encuentros</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#sponsors">Sponsors</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul></nav>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSckI4K6f6Zb0IzgZxXQbWhtwuO2IpEojY2yq_1nicVpULTy1g/viewform" target="_blank" rel="noopener" class="btn btn-primary header-cta">Conseguí tu entrada</a>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="blocks-decor" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span class="hollow"></span><span></span><span class="hollow"></span><span></span><span></span>
+    <span class="lshape"></span><span class="lshape"></span>
+  </div>
+  <div class="wrap hero-inner">
+    <span class="eyebrow mono">Encuentro Constructivo · Santa Rosa, La Pampa</span>
+    <h1>
+      <div class="line"><span>Construir también</span></div>
+      <div class="line"><span>es encontrarse.</span></div>
+    </h1>
+    <p>Un ciclo de encuentros que reúne a profesionales, empresas, estudiantes y referentes del sector de la construcción para compartir experiencias, tendencias e innovación. Vení a compartir tu metro cuadrado.</p>
+    <div class="actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSckI4K6f6Zb0IzgZxXQbWhtwuO2IpEojY2yq_1nicVpULTy1g/viewform" target="_blank" rel="noopener" class="btn btn-primary">Conseguí tu entrada →</a>
+      <a href="#cronograma" class="btn btn-outline" style="color:var(--crema); border-color:var(--crema);">Ver cronograma 2026</a>
+    </div>
+  </div>
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span>OBRARQ 26</span><span>·</span><span>ENCUENTRO CONSTRUCTIVO</span><span>·</span><span>SANTA ROSA, LA PAMPA</span><span>·</span>
+      <span>OBRARQ 26</span><span>·</span><span>ENCUENTRO CONSTRUCTIVO</span><span>·</span><span>SANTA ROSA, LA PAMPA</span><span>·</span>
+    </div>
+  </div>
+</section>
+
+<section class="resumen" id="resumen">
+  <div class="wrap resumen-grid">
+    <div class="reveal">
+      <div class="resumen-photo">
+        <video src="assets/recap.mp4" poster="assets/recap-poster.jpg" controls playsinline preload="metadata"></video>
+      </div>
+    </div>
+    <div class="reveal resumen-copy">
+      <span class="eyebrow" style="color:var(--naranja);">Ya pasó, y fue así</span>
+      <h2>El primer encuentro ya es una realidad.</h2>
+      <p>El 14 de mayo reunimos en Santa Rosa a profesionales, empresas y estudiantes de la construcción para hablar de energía solar y climatización. Esto recién empieza.</p>
+      <div class="resumen-stats">
+        <div class="stat"><div class="val" data-count="120" data-suffix="+">0</div><div class="label">Asistentes</div></div>
+        <div class="stat"><div class="val" data-count="2" data-suffix="">0</div><div class="label">Disertantes</div></div>
+        <div class="stat"><div class="val" data-count="1" data-suffix="°">0</div><div class="label">Encuentro realizado</div></div>
+      </div>
+      <a href="#galeria" class="btn btn-primary">Ver galería completa →</a>
+    </div>
+  </div>
+</section>
+
+<section class="cronograma" id="cronograma">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" style="color:var(--rosa);">Cronograma</span>
+      <h2>Encuentros 2026</h2>
+      <p>Cada encuentro aborda un eje distinto de la construcción, con especialistas y empresas referentes.</p>
+    </div>
+
+    <div class="tabs" id="tabs">
+      <div class="tab-slider" id="tabSlider"></div>
+      <button class="tab-btn active" data-panel="proximos">Próximos encuentros</button>
+      <button class="tab-btn" data-panel="pasados">Ya pasaron</button>
+    </div>
+
+    <div class="panel active" id="panel-proximos">
+      <div class="charla-card tema-azul reveal">
+        <div class="blob-wrap" aria-hidden="true">
+          <div class="blob b1"></div>
+          <div class="blob b2"></div>
+          <div class="veil"></div>
+        </div>
+        <div class="num">02</div>
+        <div class="date mono">4 DE AGOSTO · 19 H</div>
+        <h3>Urbanismo: la revolución de las ciudades</h3>
+        <p class="speakers">Disertante: <b>Álvaro García Resta</b> (Urbanista)</p>
+        <div class="foot">
+          <span class="status open">Inscripción abierta</span>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSckI4K6f6Zb0IzgZxXQbWhtwuO2IpEojY2yq_1nicVpULTy1g/viewform" target="_blank" rel="noopener" class="btn btn-primary">Conseguí tu entrada</a>
+        </div>
+      </div>
+      <div class="charla-card reveal">
+        <div class="num">03</div>
+        <div class="date mono">10 DE SEPTIEMBRE</div>
+        <h3>Sistemas Constructivos</h3>
+        <p class="speakers">Acerbrag · Aluminio · Bono · Hormigón Elaborado · Sika<br><b>Empresas:</b> Acerbrag, Sika, Construmix, Ascender, Aberturas Pampeanas</p>
+        <div class="foot"><span class="status soon">Fecha confirmada</span></div>
+      </div>
+      <div class="charla-card reveal">
+        <div class="num">04</div>
+        <div class="date mono">5 DE NOVIEMBRE · CIERRE ANUAL</div>
+        <h3>Arquitectura, Diseño y Terminaciones</h3>
+        <p class="speakers">Cambre Domótica · Iluminación · Cerro Negro · FV · Pinturas<br><b>Empresas:</b> Cambre, FV, Cerro Negro, Pastorutti, Pampacryl, Ascender, Artelco</p>
+        <div class="foot"><span class="status soon">Fecha confirmada</span></div>
+      </div>
+    </div>
+
+    <div class="panel" id="panel-pasados">
+      <div class="charla-card past reveal">
+        <div class="num" style="background:var(--ink);">01</div>
+        <div class="date mono">14 DE MAYO</div>
+        <h3>Energía solar y climatización</h3>
+        <p class="speakers">"Energía solar: cuándo sirve y cuándo no" — <b>Javier Dodds</b><br>"Sistemas de Climatización VRF" — <b>Ing. Agostina Myszkowski</b></p>
+        <div class="foot"><span class="status done">Encuentro realizado</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="nosotros" id="nosotros">
+  <div class="wrap nosotros-grid">
+    <div class="reveal">
+      <div class="section-head" style="margin-bottom:32px;">
+        <span class="eyebrow" style="color:var(--naranja);">Quiénes somos</span>
+        <h2>Construir también es encontrarse.</h2>
+      </div>
+      <p>OBRARQ nace con una idea simple y a la vez poderosa: construir también es encontrarse. Es un ciclo de encuentros que reúne a profesionales, empresas, estudiantes y referentes del sector para compartir experiencias, tendencias, innovación y herramientas.</p>
+      <p>El enfoque está puesto en elevar la calidad de la construcción teniendo en cuenta particularmente las características de nuestra zona, en La Pampa. Más que un evento, OBRARQ busca consolidar una comunidad donde las conversaciones generen nuevas ideas, oportunidades y vínculos.</p>
+      <div class="pull-quote">"Vení a compartir tu metro cuadrado."</div>
+    </div>
+    <div class="reveal">
+      <div class="founder-card">
+        <div class="block" aria-hidden="true"></div>
+        <span class="tag mono">Impulsa el proyecto</span>
+        <h3>Arq. Angie Pérez Brusco</h3>
+        <p>OBRARQ es una iniciativa impulsada por la arquitecta Angie Pérez Brusco, con el propósito de crear un espacio permanente de encuentro para generar valor en toda la cadena de la construcción.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="galeria" id="galeria">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="color:var(--naranja);">Galería</span>
+      <h2>Así vivimos OBRARQ</h2>
+    </div>
+  </div>
+
+  <div class="gal-marquee reveal">
+    <div class="gal-track">
+      <img src="assets/2obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/19obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/35obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/80obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/100obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/135obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/144obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/171obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/179obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/194obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <!-- duplicado para loop continuo -->
+      <img src="assets/2obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/19obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/35obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/80obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/100obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/135obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/144obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/171obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/179obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/194obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+    </div>
+  </div>
+
+  <div class="gal-marquee reveal">
+    <div class="gal-track rtl">
+      <img src="assets/10obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/33obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/59obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/93obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/113obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/136obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/170obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/176obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/187obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <!-- duplicado para loop continuo -->
+      <img src="assets/10obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/33obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/59obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/93obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/113obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/136obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/170obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/176obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/187obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+    </div>
+  </div>
+</section>
+
+<section class="sponsors" id="sponsors">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" style="color:var(--rosa);">Sponsors</span>
+      <h2>Tu marca tiene que estar acá</h2>
+      <p>Empresas y marcas que ya acompañan el ciclo de encuentros.</p>
+    </div>
+
+    <div class="logos-grid reveal">
+      <div class="logo-chip">Acerbrag</div>
+      <div class="logo-chip">Sika</div>
+      <div class="logo-chip">Construmix</div>
+      <div class="logo-chip">Ascender</div>
+      <div class="logo-chip">Aberturas Pampeanas</div>
+      <div class="logo-chip">Cambre</div>
+      <div class="logo-chip">FV</div>
+      <div class="logo-chip">Cerro Negro</div>
+      <div class="logo-chip">Pastorutti</div>
+      <div class="logo-chip">Pampacryl</div>
+      <div class="logo-chip">Artelco</div>
+    </div>
+
+    <div class="sponsor-form-wrap reveal">
+      <button class="btn btn-primary" id="sponsorToggle">Quiero auspiciar →</button>
+      <form id="sponsorForm" class="sponsor-form" onsubmit="return false;">
+        <div class="form-grid">
+          <input type="text" placeholder="Nombre y apellido" required>
+          <input type="text" placeholder="Empresa / marca" required>
+          <input type="text" placeholder="Rubro">
+          <input type="text" placeholder="Ciudad">
+          <input type="tel" placeholder="Teléfono">
+          <input type="email" placeholder="Email" required>
+        </div>
+        <input type="text" placeholder="Redes (Instagram, web, etc.)">
+        <button type="submit" class="btn btn-outline">Enviar</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" style="color:var(--naranja);">Preguntas frecuentes</span>
+      <h2>Todo lo que necesitás saber</h2>
+    </div>
+    <div class="faq-list reveal" id="faqList">
+      <div class="faq-item open">
+        <button class="faq-q"><span class="faq-dot"></span><span class="faq-idx">01</span><span class="faq-qtext">¿Qué es OBRARQ?</span><span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Un espacio de encuentro para profesionales, empresas, estudiantes y todos los actores vinculados a la arquitectura, la ingeniería y la construcción. A través de charlas, intercambio y networking, buscamos impulsar el crecimiento del sector en La Pampa.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span class="faq-dot"></span><span class="faq-idx">02</span><span class="faq-qtext">¿Por qué nace OBRARQ?</span><span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Porque las mejores obras comienzan mucho antes del primer ladrillo. Empiezan cuando las personas se encuentran, comparten experiencias y construyen conocimiento. OBRARQ busca ser ese lugar de encuentro para la comunidad de la construcción.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span class="faq-dot"></span><span class="faq-idx">03</span><span class="faq-qtext">¿Quiénes pueden participar?</span><span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Arquitectos, ingenieros, maestros mayores de obra, constructores, desarrolladores, estudiantes, proveedores, empresas y toda persona interesada en la construcción y el desarrollo urbano.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span class="faq-dot"></span><span class="faq-idx">04</span><span class="faq-qtext">¿Cómo consigo mi entrada?</span><span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Completando el formulario de inscripción disponible en esta página y siguiendo los pasos para realizar el pago. Una vez realizada la inscripción, vas a recibir la información para confirmar tu lugar.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span class="faq-dot"></span><span class="faq-idx">05</span><span class="faq-qtext">¿Los encuentros tienen cupos limitados?</span><span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Sí. Cada encuentro cuenta con capacidad limitada, por lo que recomendamos reservar el lugar con anticipación.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span class="faq-dot"></span><span class="faq-idx">06</span><span class="faq-qtext">¿Dónde se realizan los encuentros?</span><span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>En el salón New Surprise, ubicado en Av. Eva Perón 1865, Santa Rosa, La Pampa.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span class="faq-dot"></span><span class="faq-idx">07</span><span class="faq-qtext">¿Cada encuentro trata un tema diferente?</span><span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Sí. Cada edición aborda una temática específica de interés para el sector, con especialistas invitados y empresas referentes.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span class="faq-dot"></span><span class="faq-idx">08</span><span class="faq-qtext">¿Puedo asistir si soy estudiante?</span><span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Por supuesto. OBRARQ también está pensado para quienes se están formando y quieren acercarse al mundo profesional.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span class="faq-dot"></span><span class="faq-idx">09</span><span class="faq-qtext">¿Cómo puedo ser sponsor o acompañar OBRARQ?</span><span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Si querés formar parte del ciclo como sponsor o aliado estratégico, podés comunicarte con nosotros desde la sección Sponsors.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contacto" id="contacto">
+  <div class="wrap">
+    <div class="reveal contacto-solo">
+      <div class="section-head center" style="margin-bottom:36px;">
+        <span class="eyebrow" style="color:var(--naranja);">Contacto</span>
+        <h2>Hablemos</h2>
+      </div>
+      <div class="info-row">
+        <div class="ico">📍</div>
+        <div><h4>Ubicación</h4><p>Salón New Surprise — Av. Eva Perón 1865, Santa Rosa, La Pampa</p></div>
+      </div>
+      <div class="info-row">
+        <div class="ico">☎</div>
+        <div><h4>Teléfono / WhatsApp</h4><a href="https://wa.me/5492954200393" target="_blank" rel="noopener">+54 9 2954 200393</a></div>
+      </div>
+      <div class="info-row">
+        <div class="ico">@</div>
+        <div><h4>Instagram</h4><a href="https://www.instagram.com/obrarq.lp" target="_blank" rel="noopener">@obrarq.lp</a></div>
+      </div>
+      <a href="https://wa.me/5492954200393" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:12px;">Escribinos por WhatsApp →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="logo"><span class="sq"></span>obrarq</div>
+    <div class="footer-links">
+      <div>
+        <h5>Ciclo</h5>
+        <a href="#cronograma">Encuentros 2026</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#galeria">Galería</a>
+      </div>
+      <div>
+        <h5>Comunidad</h5>
+        <a href="#sponsors">Sponsors</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div>
+        <h5>Contacto</h5>
+        <a href="https://wa.me/5492954200393" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://www.instagram.com/obrarq.lp" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>OBRARQ © 2026 — Encuentro Constructivo, Santa Rosa, La Pampa</span>
+    <span>Impulsado por Arq. Angie Pérez Brusco</span>
+  </div>
+</footer>
+
+<script>
+  // reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // resumen stat counters
+  const statCounters = document.querySelectorAll('.resumen-stats .val');
+  const countIo = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const el = e.target;
+        const target = parseInt(el.dataset.count,10);
+        let cur = 0;
+        const step = Math.max(1, Math.round(target/50));
+        const tick = ()=>{
+          cur += step;
+          if(cur >= target){ el.textContent = target; }
+          else { el.textContent = cur; requestAnimationFrame(tick); }
+        };
+        tick();
+        countIo.unobserve(el);
+      }
+    });
+  },{threshold:.5});
+  statCounters.forEach(c=>countIo.observe(c));
+
+  // cronograma tabs
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const slider = document.getElementById('tabSlider');
+  function positionSlider(btn){
+    slider.style.width = btn.offsetWidth + 'px';
+    slider.style.transform = `translateX(${btn.offsetLeft - 5}px)`;
+  }
+  window.addEventListener('load', ()=> positionSlider(document.querySelector('.tab-btn.active')));
+  tabBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      tabBtns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      positionSlider(btn);
+      document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+      document.getElementById('panel-'+btn.dataset.panel).classList.add('active');
+    });
+  });
+
+  // faq accordion
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    if(item.classList.contains('open')){ a.style.maxHeight = a.scrollHeight + 'px'; }
+    q.addEventListener('click', ()=>{
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>{
+        i.classList.remove('open');
+        i.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // sponsor form toggle
+  const sponsorToggle = document.getElementById('sponsorToggle');
+  const sponsorForm = document.getElementById('sponsorForm');
+  sponsorToggle.addEventListener('click', ()=>{
+    sponsorForm.classList.toggle('show');
+    if(sponsorForm.classList.contains('show')){
+      sponsorForm.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+  });
+</script>
+
+</body>
+</html>
