@@ -40,14 +40,22 @@
 
   /* BLUEPRINT GRID — sutil textura que une visualmente las secciones */
   .blueprint{
-    --grid-color: rgba(92,26,46,.05);
+    --grid-color: rgba(92,26,46,.09);
     background-image:
       linear-gradient(var(--grid-color) 1px, transparent 1px),
       linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
     background-size: 46px 46px;
     background-position: center top;
   }
-  .blueprint.on-dark{ --grid-color: rgba(245,233,220,.07); }
+  .blueprint.on-dark{ --grid-color: rgba(245,233,220,.12); }
+
+  /* SOFT DIVIDERS — cortes difuminados entre secciones en vez de linea recta */
+  .soft-divider{height:120px; margin:-60px 0; position:relative; pointer-events:none; filter:blur(30px); z-index:2;}
+  .divider-bordo-crema{background:linear-gradient(to bottom, var(--bordo) 0%, var(--crema) 100%);}
+  .divider-white-crema{height:70px; margin:-35px 0; filter:blur(18px); background:linear-gradient(to bottom, var(--white) 0%, var(--crema) 100%);}
+  .divider-crema-white{height:70px; margin:-35px 0; filter:blur(18px); background:linear-gradient(to bottom, var(--crema) 0%, var(--white) 100%);}
+  .divider-crema-ink{background:linear-gradient(to bottom, var(--crema) 0%, var(--ink) 100%);}
+  .divider-ink-bordodeep{height:80px; margin:-40px 0; filter:blur(20px); background:linear-gradient(to bottom, var(--ink) 0%, var(--bordo-deep) 100%);}
   .eyebrow{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.18em; text-transform:uppercase;}
   .btn{
     display:inline-flex; align-items:center; gap:10px; padding:16px 28px; border-radius:3px;
@@ -156,7 +164,7 @@
   .center{text-align:center; margin-left:auto; margin-right:auto;}
 
   /* RESUMEN (Ya pasó, y fue así) */
-  .resumen{background:var(--crema);}
+  .resumen{background-color:var(--crema);}
   .resumen-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;}
   @media(max-width:840px){.resumen-grid{grid-template-columns:1fr;}}
   .resumen-photo{
@@ -183,7 +191,7 @@
   }
 
   /* NOSOTROS */
-  .nosotros{background:var(--crema); padding-bottom:50px;}
+  .nosotros{background-color:var(--crema); padding-bottom:50px;}
   .nosotros-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:60px; align-items:start;}
   @media(max-width:840px){.nosotros-grid{grid-template-columns:1fr;}}
   .nosotros p{font-size:17px; line-height:1.75; margin-bottom:18px; color:#3d2530;}
@@ -200,7 +208,7 @@
   .founder-card .block{position:absolute; width:60px; height:60px; background:var(--rosa); opacity:.25; bottom:-20px; right:-20px; border-radius:4px;}
 
   /* CRONOGRAMA */
-  .cronograma{background:var(--white);}
+  .cronograma{background-color:var(--white);}
   .tabs{display:inline-flex; border:1.5px solid var(--ink); border-radius:30px; padding:5px; position:relative; margin-bottom:48px;}
   .tab-slider{position:absolute; top:5px; bottom:5px; left:5px; width:150px; background:var(--ink); border-radius:24px; transition:transform .4s cubic-bezier(.7,0,.2,1); z-index:1;}
   .tab-btn{position:relative; z-index:2; padding:12px 24px; font-family:'JetBrains Mono',monospace; font-size:13px; border-radius:24px; background:none; border:none; color:var(--ink); transition:color .3s;}
@@ -249,7 +257,7 @@
   @keyframes blobMove2{0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(-12%,-8%) scale(1.1);}}
 
   /* GALERIA — cinta horizontal en movimiento, dos filas en direcciones opuestas */
-  .galeria{background:var(--crema); padding-left:0; padding-right:0; padding-top:50px;}
+  .galeria{background-color:var(--crema); padding-left:0; padding-right:0; padding-top:50px;}
   .galeria .wrap{margin-bottom:48px;}
   .gal-marquee{overflow:hidden; margin-bottom:22px; -webkit-mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);}
   .gal-track{display:flex; gap:18px; width:max-content; animation:galScrollL 46s linear infinite;}
@@ -265,7 +273,7 @@
   @media(max-width:640px){ .gal-track img{height:180px;} }
 
   /* SPONSORS */
-  .sponsors{background:var(--white);}
+  .sponsors{background-color:var(--white);}
   .logos-grid{display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin-bottom:48px;}
   .logo-chip{
     border:1.5px solid var(--line); border-radius:6px; padding:18px 24px; font-weight:700; font-size:15px; color:var(--bordo);
@@ -318,7 +326,7 @@
   .sponsor-form button{align-self:flex-start;}
 
   /* FAQ */
-  .faq{background:var(--crema);}
+  .faq{background-color:var(--crema);}
   .faq-list{max-width:760px;}
   .faq-item{border-bottom:1px solid var(--line);}
   .faq-list .faq-item{opacity:0;}
@@ -350,7 +358,7 @@
   .faq-a p{font-size:15px; line-height:1.65; color:#5a4750; max-width:620px;}
 
   /* CONTACTO */
-  .contacto{background:var(--ink); color:var(--crema);}
+  .contacto{background-color:var(--ink); color:var(--crema);}
   .contacto-solo{max-width:480px; margin:0 auto; text-align:center;}
   .info-row{display:flex; gap:16px; margin-bottom:26px; align-items:flex-start; text-align:left;}
   .info-row .ico{width:38px; height:38px; border-radius:50%; background:var(--naranja); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--white);}
@@ -414,6 +422,7 @@
   </div>
 </section>
 
+<div class="soft-divider divider-bordo-crema" aria-hidden="true"></div>
 <section class="resumen blueprint" id="resumen">
   <div class="wrap resumen-grid">
     <div class="reveal">
@@ -493,6 +502,7 @@
   </div>
 </section>
 
+<div class="soft-divider divider-white-crema" aria-hidden="true"></div>
 <section class="nosotros blueprint" id="nosotros">
   <div class="wrap nosotros-grid">
     <div class="reveal">
@@ -574,6 +584,7 @@
   </div>
 </section>
 
+<div class="soft-divider divider-crema-white" aria-hidden="true"></div>
 <section class="sponsors blueprint" id="sponsors">
   <div class="wrap">
     <div class="section-head reveal">
@@ -626,6 +637,7 @@
   </div>
 </section>
 
+<div class="soft-divider divider-white-crema" aria-hidden="true"></div>
 <section class="faq blueprint" id="faq">
   <div class="wrap">
     <div class="section-head reveal">
@@ -673,6 +685,7 @@
   </div>
 </section>
 
+<div class="soft-divider divider-crema-ink" aria-hidden="true"></div>
 <section class="contacto blueprint on-dark" id="contacto">
   <div class="wrap">
     <div class="reveal contacto-solo">
@@ -701,6 +714,7 @@
   </div>
 </section>
 
+<div class="soft-divider divider-ink-bordodeep" aria-hidden="true"></div>
 <footer>
   <div class="footer-top">
     <div class="logo"><span class="sq"></span>obrarq</div>
