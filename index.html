@@ -35,6 +35,14 @@
   button{font-family:inherit; cursor:pointer;}
   .wrap{max-width:1180px; margin:0 auto; padding:0 5vw;}
   section{padding:110px 0;}
+  @media(max-width:640px){
+    section{padding:56px 0;}
+    .nosotros{padding-bottom:30px !important;}
+    .galeria{padding-top:30px !important;}
+    .soft-divider{height:70px; margin:-35px 0;}
+    .divider-white-crema, .divider-crema-white{height:44px; margin:-22px 0;}
+    .divider-ink-bordodeep{height:50px; margin:-25px 0;}
+  }
   .reveal{opacity:0; transform:translateY(36px); transition:opacity .8s ease, transform .8s ease;}
   .reveal.in{opacity:1; transform:translateY(0);}
 
@@ -98,10 +106,35 @@
   }
   .logo{display:flex; align-items:center; gap:8px; font-weight:800; font-size:22px; letter-spacing:-.01em; color:var(--bordo);}
   .logo .sq{width:9px; height:9px; background:var(--naranja); display:inline-block;}
-  nav ul{display:none; gap:30px;}
+  .header-actions{display:flex; align-items:center; gap:12px;}
+  nav ul{
+    display:flex; flex-direction:column; gap:0; list-style:none;
+    position:absolute; top:100%; left:0; right:0; background:var(--crema);
+    padding:6px 5vw 18px; border-bottom:1px solid var(--line); box-shadow:0 16px 28px rgba(43,21,32,.1);
+    opacity:0; transform:translateY(-10px); pointer-events:none; transition:opacity .25s ease, transform .25s ease;
+  }
+  nav ul.open{opacity:1; transform:translateY(0); pointer-events:auto;}
+  nav ul li{width:100%;}
   nav a{font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--ink); opacity:.75; transition:.25s; position:relative;}
+  nav ul li a{display:block; padding:14px 0; font-size:15px; border-bottom:1px solid var(--line);}
   nav a:hover{opacity:1; color:var(--naranja);}
-  @media(min-width:900px){ nav ul{display:flex;} }
+  .nav-toggle{
+    display:flex; flex-direction:column; justify-content:center; gap:5px;
+    width:34px; height:34px; background:none; border:none; padding:0; cursor:pointer;
+  }
+  .nav-toggle span{display:block; width:100%; height:2px; background:var(--bordo); transition:transform .3s ease, opacity .3s ease;}
+  .nav-toggle.active span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-toggle.active span:nth-child(2){opacity:0;}
+  .nav-toggle.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  @media(min-width:900px){
+    .nav-toggle{display:none;}
+    nav ul{
+      position:static; flex-direction:row; gap:30px; background:none; padding:0; border:none; box-shadow:none;
+      opacity:1; transform:none; pointer-events:auto;
+    }
+    nav ul li{width:auto;}
+    nav ul li a{padding:0; border:none;}
+  }
   .header-cta{font-size:13px; padding:12px 20px;}
 
   /* HERO */
@@ -146,9 +179,9 @@
   }
   .hero .actions{display:flex; gap:16px; justify-content:center; margin-top:40px; flex-wrap:wrap; opacity:0; animation:fadeIn .8s .65s forwards;}
 
-  .marquee-strip{background:var(--naranja); color:var(--bordo-deep); overflow:hidden; white-space:nowrap; padding:14px 0; position:relative; z-index:3;}
+  .marquee-strip{background:var(--naranja); color:var(--bordo-deep); overflow:hidden; white-space:nowrap; padding:10px 0; position:relative; z-index:3;}
   .marquee-track{display:inline-block; animation:scroll 20s linear infinite;}
-  .marquee-track span{font-family:'JetBrains Mono',monospace; font-weight:600; font-size:14px; letter-spacing:.08em; margin-right:36px; text-transform:uppercase;}
+  .marquee-track span{font-family:'JetBrains Mono',monospace; font-weight:600; font-size:clamp(10.5px,2.4vw,14px); letter-spacing:.06em; margin-right:28px; text-transform:uppercase;}
   @keyframes scroll{from{transform:translateX(0);} to{transform:translateX(-50%);}}
 
   /* SECTION HEAD generic */
@@ -175,11 +208,11 @@
   .resumen h2{font-size:clamp(30px,4.6vw,50px); font-weight:800; margin:16px 0 18px; line-height:1.1; color:var(--bordo);}
   .resumen-copy p{font-size:16px; line-height:1.65; color:#3d2530; max-width:480px;}
   .resumen-stats{display:flex; gap:0; margin:36px 0 8px; flex-wrap:nowrap; border-top:1.5px solid var(--line); padding-top:28px;}
-  .resumen-stats .stat{flex:0 0 auto; padding:0 24px 0 0; margin-right:24px; border-right:1.5px solid var(--line);}
+  .resumen-stats .stat{flex:0 0 auto; padding:0 24px 0 0; margin-right:24px; border-right:1.5px solid var(--line); text-align:center;}
   .resumen-stats .stat:last-child{border-right:none; margin-right:0; padding-right:0;}
-  .resumen-stats .stat .val{font-family:'JetBrains Mono',monospace; font-size:clamp(30px,4vw,56px); font-weight:700; color:var(--naranja); line-height:1; white-space:nowrap;}
+  .resumen-stats .stat .val{font-family:'JetBrains Mono',monospace; font-size:clamp(30px,4vw,56px); font-weight:700; color:var(--naranja); line-height:1; white-space:nowrap; text-align:center;}
   .resumen-stats .stat .val::after{content:attr(data-suffix);}
-  .resumen-stats .stat .label{font-size:11.5px; color:#5a4750; margin-top:8px; text-transform:uppercase; letter-spacing:.04em; white-space:nowrap;}
+  .resumen-stats .stat .label{font-size:11.5px; color:#5a4750; margin-top:8px; text-transform:uppercase; letter-spacing:.04em; white-space:nowrap; text-align:center;}
   @media(max-width:420px){
     .resumen-stats{gap:0;}
     .resumen-stats .stat{padding-right:14px; margin-right:14px;}
@@ -255,7 +288,7 @@
   .galeria{background-color:var(--crema); padding-left:0; padding-right:0; padding-top:50px;}
   .galeria .wrap{margin-bottom:48px;}
   .gal-marquee{overflow:hidden; margin-bottom:22px; -webkit-mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);}
-  .gal-track{display:flex; gap:18px; width:max-content; animation:galScrollL 46s linear infinite;}
+  .gal-track{display:flex; gap:18px; width:max-content; animation:galScrollL 32s linear infinite;}
   .gal-track.rtl{animation-name:galScrollR;}
   .gal-marquee:hover .gal-track{animation-play-state:paused;}
   .gal-track img{
@@ -382,14 +415,19 @@
 
 <header>
   <div class="logo"><span class="sq"></span>obrarq</div>
-  <nav><ul>
+  <nav><ul id="navMenu">
     <li><a href="#cronograma">Encuentros</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#sponsors">Sponsors</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul></nav>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSckI4K6f6Zb0IzgZxXQbWhtwuO2IpEojY2yq_1nicVpULTy1g/viewform" target="_blank" rel="noopener" class="btn btn-primary header-cta">Conseguí tu entrada</a>
+  <div class="header-actions">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSckI4K6f6Zb0IzgZxXQbWhtwuO2IpEojY2yq_1nicVpULTy1g/viewform" target="_blank" rel="noopener" class="btn btn-primary header-cta">Conseguí tu entrada</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </header>
 
 <section class="hero" id="inicio">
@@ -533,51 +571,51 @@
 
   <div class="gal-marquee reveal">
     <div class="gal-track">
-      <img src="assets/2obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/19obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/35obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/80obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/100obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/135obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/144obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/171obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/179obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/194obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/2obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/19obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/35obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/80obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/100obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/135obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/144obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/171obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/179obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/194obrarq.jpg" alt="Encuentro 01 — Obrarq">
       <!-- duplicado para loop continuo -->
-      <img src="assets/2obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/19obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/35obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/80obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/100obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/135obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/144obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/171obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/179obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/194obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/2obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/19obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/35obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/80obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/100obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/135obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/144obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/171obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/179obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/194obrarq.jpg" alt="Encuentro 01 — Obrarq">
     </div>
   </div>
 
   <div class="gal-marquee reveal">
     <div class="gal-track rtl">
-      <img src="assets/10obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/33obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/59obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/93obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/113obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/136obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/170obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/176obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/187obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/10obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/33obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/59obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/93obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/113obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/136obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/170obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/176obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/187obrarq.jpg" alt="Encuentro 01 — Obrarq">
       <!-- duplicado para loop continuo -->
-      <img src="assets/10obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/33obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/59obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/93obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/113obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/136obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/170obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/176obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
-      <img src="assets/187obrarq.jpg" loading="lazy" alt="Encuentro 01 — Obrarq">
+      <img src="assets/10obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/33obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/59obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/93obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/113obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/136obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/170obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/176obrarq.jpg" alt="Encuentro 01 — Obrarq">
+      <img src="assets/187obrarq.jpg" alt="Encuentro 01 — Obrarq">
     </div>
   </div>
 </section>
@@ -720,6 +758,20 @@
 </footer>
 
 <script>
+  // mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navMenu = document.getElementById('navMenu');
+  navToggle.addEventListener('click', ()=>{
+    const isOpen = navMenu.classList.toggle('open');
+    navToggle.classList.toggle('active', isOpen);
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  navMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{
+    navMenu.classList.remove('open');
+    navToggle.classList.remove('active');
+    navToggle.setAttribute('aria-expanded','false');
+  }));
+
   // reveal on scroll
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
