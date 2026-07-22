@@ -37,6 +37,17 @@
   section{padding:110px 0;}
   .reveal{opacity:0; transform:translateY(36px); transition:opacity .8s ease, transform .8s ease;}
   .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* BLUEPRINT GRID — sutil textura que une visualmente las secciones */
+  .blueprint{
+    --grid-color: rgba(92,26,46,.05);
+    background-image:
+      linear-gradient(var(--grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 46px 46px;
+    background-position: center top;
+  }
+  .blueprint.on-dark{ --grid-color: rgba(245,233,220,.07); }
   .eyebrow{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.18em; text-transform:uppercase;}
   .btn{
     display:inline-flex; align-items:center; gap:10px; padding:16px 28px; border-radius:3px;
@@ -172,7 +183,7 @@
   }
 
   /* NOSOTROS */
-  .nosotros{background:var(--crema);}
+  .nosotros{background:var(--crema); padding-bottom:50px;}
   .nosotros-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:60px; align-items:start;}
   @media(max-width:840px){.nosotros-grid{grid-template-columns:1fr;}}
   .nosotros p{font-size:17px; line-height:1.75; margin-bottom:18px; color:#3d2530;}
@@ -238,7 +249,7 @@
   @keyframes blobMove2{0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(-12%,-8%) scale(1.1);}}
 
   /* GALERIA — cinta horizontal en movimiento, dos filas en direcciones opuestas */
-  .galeria{background:var(--crema); padding-left:0; padding-right:0;}
+  .galeria{background:var(--crema); padding-left:0; padding-right:0; padding-top:50px;}
   .galeria .wrap{margin-bottom:48px;}
   .gal-marquee{overflow:hidden; margin-bottom:22px; -webkit-mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);}
   .gal-track{display:flex; gap:18px; width:max-content; animation:galScrollL 46s linear infinite;}
@@ -262,6 +273,31 @@
     display:flex; align-items:center; justify-content:center; height:64px; width:150px;
   }
   .logo-chip:hover{transform:translateY(-4px); border-color:var(--naranja); box-shadow:0 8px 20px rgba(0,0,0,.08);}
+  .logos-grid .logo-chip{opacity:0;}
+  .logos-grid.in .logo-chip{animation:fadeIn .55s ease forwards;}
+  .logos-grid.in .logo-chip:nth-child(1){animation-delay:0.0s;}
+  .logos-grid.in .logo-chip:nth-child(2){animation-delay:0.04s;}
+  .logos-grid.in .logo-chip:nth-child(3){animation-delay:0.08s;}
+  .logos-grid.in .logo-chip:nth-child(4){animation-delay:0.12s;}
+  .logos-grid.in .logo-chip:nth-child(5){animation-delay:0.16s;}
+  .logos-grid.in .logo-chip:nth-child(6){animation-delay:0.2s;}
+  .logos-grid.in .logo-chip:nth-child(7){animation-delay:0.24s;}
+  .logos-grid.in .logo-chip:nth-child(8){animation-delay:0.28s;}
+  .logos-grid.in .logo-chip:nth-child(9){animation-delay:0.32s;}
+  .logos-grid.in .logo-chip:nth-child(10){animation-delay:0.36s;}
+  .logos-grid.in .logo-chip:nth-child(11){animation-delay:0.4s;}
+  .logos-grid.in .logo-chip:nth-child(12){animation-delay:0.44s;}
+  .logos-grid.in .logo-chip:nth-child(13){animation-delay:0.48s;}
+  .logos-grid.in .logo-chip:nth-child(14){animation-delay:0.52s;}
+  .logos-grid.in .logo-chip:nth-child(15){animation-delay:0.56s;}
+  .logos-grid.in .logo-chip:nth-child(16){animation-delay:0.6s;}
+  .logos-grid.in .logo-chip:nth-child(17){animation-delay:0.64s;}
+  .logos-grid.in .logo-chip:nth-child(18){animation-delay:0.68s;}
+  .logos-grid.in .logo-chip:nth-child(19){animation-delay:0.72s;}
+  .logos-grid.in .logo-chip:nth-child(20){animation-delay:0.76s;}
+  .logos-grid.in .logo-chip:nth-child(21){animation-delay:0.8s;}
+  .logos-grid.in .logo-chip:nth-child(22){animation-delay:0.84s;}
+  .logos-grid.in .logo-chip:nth-child(23){animation-delay:0.88s;}
   .logo-chip img{
     max-width:100%; max-height:34px; width:auto; height:auto; object-fit:contain;
     filter:grayscale(100%); opacity:.65; transition:filter .35s, opacity .35s, transform .35s;
@@ -285,6 +321,17 @@
   .faq{background:var(--crema);}
   .faq-list{max-width:760px;}
   .faq-item{border-bottom:1px solid var(--line);}
+  .faq-list .faq-item{opacity:0;}
+  .faq-list.in .faq-item{animation:fadeIn .55s ease forwards;}
+  .faq-list.in .faq-item:nth-child(1){animation-delay:0.0s;}
+  .faq-list.in .faq-item:nth-child(2){animation-delay:0.06s;}
+  .faq-list.in .faq-item:nth-child(3){animation-delay:0.12s;}
+  .faq-list.in .faq-item:nth-child(4){animation-delay:0.18s;}
+  .faq-list.in .faq-item:nth-child(5){animation-delay:0.24s;}
+  .faq-list.in .faq-item:nth-child(6){animation-delay:0.3s;}
+  .faq-list.in .faq-item:nth-child(7){animation-delay:0.36s;}
+  .faq-list.in .faq-item:nth-child(8){animation-delay:0.42s;}
+  .faq-list.in .faq-item:nth-child(9){animation-delay:0.48s;}
   .faq-item:last-child{border-bottom:none;}
   .faq-q{
     width:100%; text-align:left; background:none; border:none; padding:20px 0; display:flex; align-items:baseline; gap:16px;
@@ -367,7 +414,7 @@
   </div>
 </section>
 
-<section class="resumen" id="resumen">
+<section class="resumen blueprint" id="resumen">
   <div class="wrap resumen-grid">
     <div class="reveal">
       <div class="resumen-photo">
@@ -388,7 +435,7 @@
   </div>
 </section>
 
-<section class="cronograma" id="cronograma">
+<section class="cronograma blueprint" id="cronograma">
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow" style="color:var(--rosa);">Cronograma</span>
@@ -446,7 +493,7 @@
   </div>
 </section>
 
-<section class="nosotros" id="nosotros">
+<section class="nosotros blueprint" id="nosotros">
   <div class="wrap nosotros-grid">
     <div class="reveal">
       <div class="section-head" style="margin-bottom:32px;">
@@ -468,7 +515,7 @@
   </div>
 </section>
 
-<section class="galeria" id="galeria">
+<section class="galeria blueprint" id="galeria">
   <div class="wrap">
     <div class="section-head center reveal">
       <span class="eyebrow" style="color:var(--naranja);">Galería</span>
@@ -527,7 +574,7 @@
   </div>
 </section>
 
-<section class="sponsors" id="sponsors">
+<section class="sponsors blueprint" id="sponsors">
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow" style="color:var(--rosa);">Sponsors</span>
@@ -579,7 +626,7 @@
   </div>
 </section>
 
-<section class="faq" id="faq">
+<section class="faq blueprint" id="faq">
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow" style="color:var(--naranja);">Preguntas frecuentes</span>
@@ -626,7 +673,7 @@
   </div>
 </section>
 
-<section class="contacto" id="contacto">
+<section class="contacto blueprint on-dark" id="contacto">
   <div class="wrap">
     <div class="reveal contacto-solo">
       <div class="section-head center" style="margin-bottom:36px;">
