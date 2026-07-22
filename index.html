@@ -255,12 +255,18 @@
 
   /* SPONSORS */
   .sponsors{background:var(--white);}
-  .logos-grid{display:flex; flex-wrap:wrap; gap:16px; margin-bottom:48px;}
+  .logos-grid{display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin-bottom:48px;}
   .logo-chip{
-    border:1.5px solid var(--line); border-radius:6px; padding:20px 26px; font-weight:700; font-size:15px; color:var(--bordo);
-    background:var(--crema); transition:transform .3s, border-color .3s;
+    border:1.5px solid var(--line); border-radius:6px; padding:18px 24px; font-weight:700; font-size:15px; color:var(--bordo);
+    background:var(--crema); transition:transform .3s, border-color .3s, box-shadow .3s;
+    display:flex; align-items:center; justify-content:center; height:64px; width:150px;
   }
-  .logo-chip:hover{transform:translateY(-4px); border-color:var(--naranja);}
+  .logo-chip:hover{transform:translateY(-4px); border-color:var(--naranja); box-shadow:0 8px 20px rgba(0,0,0,.08);}
+  .logo-chip img{
+    max-width:100%; max-height:34px; width:auto; height:auto; object-fit:contain;
+    filter:grayscale(100%); opacity:.65; transition:filter .35s, opacity .35s, transform .35s;
+  }
+  .logo-chip:hover img{filter:grayscale(0%); opacity:1; transform:scale(1.05);}
   .sponsor-form-wrap{max-width:640px;}
   .sponsor-form{
     display:none; flex-direction:column; gap:16px; margin-top:28px; border:1.5px solid var(--line); border-radius:10px; padding:28px;
@@ -530,17 +536,29 @@
     </div>
 
     <div class="logos-grid reveal">
-      <div class="logo-chip">Acerbrag</div>
-      <div class="logo-chip">Sika</div>
-      <div class="logo-chip">Construmix</div>
-      <div class="logo-chip">Ascender</div>
-      <div class="logo-chip">Aberturas Pampeanas</div>
-      <div class="logo-chip">Cambre</div>
-      <div class="logo-chip">FV</div>
-      <div class="logo-chip">Cerro Negro</div>
-      <div class="logo-chip">Pastorutti</div>
-      <div class="logo-chip">Pampacryl</div>
-      <div class="logo-chip">Artelco</div>
+      <div class="logo-chip"><img src="assets/Recurso 1.svg" alt="Sponsor 1" loading="lazy"></div>
+      <div class="logo-chip"><img src="assets/Recurso 2.svg" alt="Sponsor 2" loading="lazy"></div>
+      <div class="logo-chip"><img src="assets/Recurso 3.svg" alt="Sponsor 3" loading="lazy"></div>
+      <div class="logo-chip"><img src="assets/Recurso 4.svg" alt="Sponsor 4" loading="lazy"></div>
+      <div class="logo-chip"><img src="assets/Recurso 5.svg" alt="Sponsor 5" loading="lazy"></div>
+      <div class="logo-chip"><img src="assets/Recurso 6.svg" alt="Sponsor 6" loading="lazy"></div>
+      <div class="logo-chip"><img src="assets/Recurso 7.svg" alt="Sponsor 7" loading="lazy"></div>
+      <div class="logo-chip"><img src="assets/Recurso 8.svg" alt="Sponsor 8" loading="lazy"></div>
+      <div class="logo-chip"><img src="assets/Recurso 9.svg" alt="Sponsor 9" loading="lazy"></div>
+      <div class="logo-chip"><img src="assets/Recurso 10.svg" alt="Sponsor 10" loading="lazy"></div>
+      <div class="logo-chip"><img src="assets/Recurso 11.svg" alt="Sponsor 11" loading="lazy"></div>
+      <div class="logo-chip"><img src="assets/Recurso 12.svg" alt="Sponsor 12" loading="lazy"></div>
+      <div class="logo-chip"><img src="assets/Recurso 13.svg" alt="Sponsor 13" loading="lazy"></div>
+      <div class="logo-chip"><img src="assets/Recurso 14.svg" alt="Sponsor 14" loading="lazy"></div>
+      <div class="logo-chip"><img src="assets/Recurso 15.svg" alt="Sponsor 15" loading="lazy"></div>
+      <div class="logo-chip"><img src="assets/Recurso 16.svg" alt="Sponsor 16" loading="lazy"></div>
+      <div class="logo-chip"><img src="assets/Recurso 17.svg" alt="Sponsor 17" loading="lazy"></div>
+      <div class="logo-chip"><img src="assets/Recurso 18.svg" alt="Sponsor 18" loading="lazy"></div>
+      <div class="logo-chip"><img src="assets/Recurso 19.svg" alt="Sponsor 19" loading="lazy"></div>
+      <div class="logo-chip"><img src="assets/Recurso 20.svg" alt="Sponsor 20" loading="lazy"></div>
+      <div class="logo-chip"><img src="assets/Recurso 21.svg" alt="Sponsor 21" loading="lazy"></div>
+      <div class="logo-chip"><img src="assets/Recurso 22.svg" alt="Sponsor 22" loading="lazy"></div>
+      <div class="logo-chip"><img src="assets/Recurso 23.svg" alt="Sponsor 23" loading="lazy"></div>
     </div>
 
     <div class="sponsor-form-wrap reveal">
