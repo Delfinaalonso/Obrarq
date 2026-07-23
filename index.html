@@ -43,8 +43,9 @@
     .divider-white-crema, .divider-crema-white{height:44px; margin:-22px 0;}
     .divider-ink-bordodeep{height:50px; margin:-25px 0;}
   }
-  .reveal{opacity:0; transform:translateY(36px); transition:opacity .8s ease, transform .8s ease;}
-  .reveal.in{opacity:1; transform:translateY(0);}
+  .reveal{opacity:1; transform:none;}
+  .reveal.reveal-ready{opacity:0; transform:translateY(36px); transition:opacity .8s ease, transform .8s ease;}
+  .reveal.reveal-ready.in{opacity:1; transform:translateY(0);}
 
  /* SOFT DIVIDERS — transicion de color real entre secciones + linea de acento animada */
   .soft-divider{height:150px; margin:-75px 0; position:relative; pointer-events:none; overflow:hidden;}
@@ -208,14 +209,13 @@
   .resumen h2{font-size:clamp(30px,4.6vw,50px); font-weight:800; margin:16px 0 18px; line-height:1.1; color:var(--bordo);}
   .resumen-copy p{font-size:16px; line-height:1.65; color:#3d2530; max-width:480px;}
   .resumen-stats{display:flex; gap:0; margin:36px 0 8px; flex-wrap:nowrap; border-top:1.5px solid var(--line); padding-top:28px;}
-  .resumen-stats .stat{flex:0 0 auto; padding:0 24px 0 0; margin-right:24px; border-right:1.5px solid var(--line); text-align:center;}
-  .resumen-stats .stat:last-child{border-right:none; margin-right:0; padding-right:0;}
-  .resumen-stats .stat .val{font-family:'JetBrains Mono',monospace; font-size:clamp(30px,4vw,56px); font-weight:700; color:var(--naranja); line-height:1; white-space:nowrap; text-align:center;}
+  .resumen-stats .stat{flex:1 1 0; min-width:0; padding:0 12px; border-right:1.5px solid var(--line); text-align:center;}
+  .resumen-stats .stat:last-child{border-right:none;}
+  .resumen-stats .stat .val{display:block; width:100%; font-family:'JetBrains Mono',monospace; font-size:clamp(26px,4vw,56px); font-weight:700; color:var(--naranja); line-height:1; text-align:center;}
   .resumen-stats .stat .val::after{content:attr(data-suffix);}
-  .resumen-stats .stat .label{font-size:11.5px; color:#5a4750; margin-top:8px; text-transform:uppercase; letter-spacing:.04em; white-space:nowrap; text-align:center;}
+  .resumen-stats .stat .label{display:block; width:100%; font-size:11.5px; color:#5a4750; margin-top:8px; text-transform:uppercase; letter-spacing:.04em; text-align:center;}
   @media(max-width:420px){
-    .resumen-stats{gap:0;}
-    .resumen-stats .stat{padding-right:14px; margin-right:14px;}
+    .resumen-stats .stat{padding:0 8px;}
   }
 
   /* NOSOTROS */
@@ -395,16 +395,115 @@
   .info-row p, .info-row a{font-size:14px; color:#cbb9c0;}
   .info-row a:hover{color:var(--naranja);}
 
+  /* FOOTER */
   footer{
     background:var(--bordo-deep); color:#cbb9c0; padding:26px 5vw 42px;
   }
-  .footer-top{display:flex; justify-content:space-between; flex-wrap:wrap; gap:30px; padding-bottom:34px; border-bottom:1px solid var(--line-dark); margin-bottom:24px;}
-  .footer-top .logo{color:var(--crema);}
-  .footer-links{display:flex; gap:40px; flex-wrap:wrap;}
-  .footer-links div h5{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; color:var(--naranja); text-transform:uppercase; margin-bottom:12px;}
-  .footer-links a{display:block; font-size:14px; margin-bottom:8px; color:#cbb9c0;}
-  .footer-links a:hover{color:var(--crema);}
-  .footer-bottom{display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:12px; flex-wrap:wrap; gap:10px;}
+  .footer-bottom{
+    display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace;
+    font-size:12px; flex-wrap:wrap; gap:10px;
+  }
+
+  /* RESPONSIVE POLISH */
+  @media(max-width:899px){
+    header{padding:16px 5vw;}
+    .header-actions{gap:9px;}
+    .header-cta{padding:10px 14px; font-size:12px;}
+  }
+  @media(max-width:640px){
+    section{padding:52px 0;}
+    .wrap{padding:0 6vw;}
+    header{padding:13px 4.5vw;}
+    .logo{font-size:20px;}
+    .header-actions{gap:7px;}
+    .header-cta{padding:9px 11px; font-size:11px;}
+    .nav-toggle{width:30px; height:30px;}
+    .nav-toggle span{height:2px;}
+
+    .hero{padding-top:70px;}
+    .hero-inner{padding-bottom:46px;}
+    .hero h1{font-size:clamp(36px,11vw,58px);}
+    .hero p{font-size:15px; line-height:1.55; margin-top:22px;}
+    .hero .actions{gap:10px; margin-top:28px;}
+    .hero .actions .btn{width:100%; justify-content:center; padding:13px 18px;}
+    .marquee-strip{padding:8px 0;}
+
+    .resumen-grid{gap:40px;}
+    .resumen-photo{max-width:280px;}
+    .resumen h2{font-size:clamp(28px,9vw,42px);}
+    .resumen-copy p{font-size:15px;}
+    .resumen-stats{padding-top:22px; margin-top:28px;}
+    .resumen-stats .stat{padding:0 6px;}
+    .resumen-stats .stat .val{font-size:clamp(22px,8vw,38px);}
+    .resumen-stats .stat .label{font-size:9.5px; white-space:normal; line-height:1.25;}
+
+    .section-head{margin-bottom:38px;}
+    .section-head h2{font-size:clamp(28px,8.5vw,42px);}
+    .section-head p{font-size:15px;}
+
+    .tabs{width:100%; display:flex; margin-bottom:38px;}
+    .tab-btn{flex:1; min-width:0; padding:10px 8px; font-size:11px; white-space:nowrap;}
+    .tab-slider{top:5px; bottom:5px;}
+
+    .panel.active{grid-template-columns:1fr; gap:22px;}
+    .charla-card{padding:24px 20px;}
+    .charla-card h3{font-size:19px;}
+    .charla-card .foot{align-items:stretch;}
+    .charla-card .foot .btn{width:100%; justify-content:center;}
+
+    .nosotros-grid{gap:38px;}
+    .nosotros p{font-size:15px; line-height:1.65;}
+    .pull-quote{font-size:22px; padding-left:17px; margin:28px 0;}
+    .founder-card{padding:25px;}
+
+    .galeria{padding-top:34px;}
+    .gal-track{gap:12px;}
+    .gal-track img{height:160px;}
+
+    .logos-grid{gap:10px; margin-bottom:36px;}
+    .logo-chip{width:calc(50% - 5px); height:58px; padding:12px 14px;}
+    .logo-chip img{max-height:30px;}
+
+    .sponsor-form{padding:20px;}
+    .sponsor-form button{width:100%; justify-content:center;}
+
+    .faq-q{font-size:15px; gap:11px; padding:17px 0;}
+    .faq-qtext{line-height:1.4;}
+    .faq-a-inner{margin-left:18px; padding-left:15px;}
+    .faq-a p{font-size:14px;}
+
+    .contacto-solo{max-width:100%;}
+    .info-row{gap:12px; margin-bottom:22px;}
+    .info-row .ico{width:34px; height:34px; font-size:14px;}
+    .info-row p,.info-row a{font-size:13px; line-height:1.5;}
+
+    .whatsapp-float{width:52px; height:52px; right:16px; bottom:16px;}
+    .whatsapp-float svg{width:27px; height:27px;}
+
+    .footer-bottom{flex-direction:column; text-align:center; gap:8px;}
+
+    .divider-white-crema,.divider-crema-white{height:38px; margin:-19px 0;}
+    .divider-ink-bordodeep{height:42px; margin:-21px 0;}
+  }
+  @media(max-width:380px){
+    .header-cta{padding:8px 9px; font-size:10px;}
+    .logo{font-size:18px;}
+    .tab-btn{font-size:10px; padding-left:5px; padding-right:5px;}
+    .resumen-stats .stat .label{font-size:8.5px;}
+  }
+  @media(min-width:641px) and (max-width:899px){
+    .wrap{padding:0 5vw;}
+    .hero h1{font-size:clamp(48px,8vw,76px);}
+    .resumen-grid,.nosotros-grid{gap:40px;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{
+      animation-duration:.01ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.01ms !important;
+    }
+  }
 </style>
 </head>
 <body>
@@ -682,40 +781,40 @@
     </div>
     <div class="faq-list reveal" id="faqList">
       <div class="faq-item open">
-        <button class="faq-q"><span class="faq-dot"></span><span class="faq-idx">01</span><span class="faq-qtext">¿Qué es OBRARQ?</span><span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>Un espacio de encuentro para profesionales, empresas, estudiantes y todos los actores vinculados a la arquitectura, la ingeniería y la construcción. A través de charlas, intercambio y networking, buscamos impulsar el crecimiento del sector en La Pampa.</p></div></div>
+        <button class="faq-q" aria-expanded="true" aria-controls="faq-answer-01"><span class="faq-dot"></span><span class="faq-idx">01</span><span class="faq-qtext">¿Qué es OBRARQ?</span><span class="plus">+</span></button>
+        <div class="faq-a" id="faq-answer-01"><div class="faq-a-inner"><p>Un espacio de encuentro para profesionales, empresas, estudiantes y todos los actores vinculados a la arquitectura, la ingeniería y la construcción. A través de charlas, intercambio y networking, buscamos impulsar el crecimiento del sector en La Pampa.</p></div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q"><span class="faq-dot"></span><span class="faq-idx">02</span><span class="faq-qtext">¿Por qué nace OBRARQ?</span><span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>Porque las mejores obras comienzan mucho antes del primer ladrillo. Empiezan cuando las personas se encuentran, comparten experiencias y construyen conocimiento. OBRARQ busca ser ese lugar de encuentro para la comunidad de la construcción.</p></div></div>
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-answer-02"><span class="faq-dot"></span><span class="faq-idx">02</span><span class="faq-qtext">¿Por qué nace OBRARQ?</span><span class="plus">+</span></button>
+        <div class="faq-a" id="faq-answer-02"><div class="faq-a-inner"><p>Porque las mejores obras comienzan mucho antes del primer ladrillo. Empiezan cuando las personas se encuentran, comparten experiencias y construyen conocimiento. OBRARQ busca ser ese lugar de encuentro para la comunidad de la construcción.</p></div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q"><span class="faq-dot"></span><span class="faq-idx">03</span><span class="faq-qtext">¿Quiénes pueden participar?</span><span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>Arquitectos, ingenieros, maestros mayores de obra, constructores, desarrolladores, estudiantes, proveedores, empresas y toda persona interesada en la construcción y el desarrollo urbano.</p></div></div>
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-answer-03"><span class="faq-dot"></span><span class="faq-idx">03</span><span class="faq-qtext">¿Quiénes pueden participar?</span><span class="plus">+</span></button>
+        <div class="faq-a" id="faq-answer-03"><div class="faq-a-inner"><p>Arquitectos, ingenieros, maestros mayores de obra, constructores, desarrolladores, estudiantes, proveedores, empresas y toda persona interesada en la construcción y el desarrollo urbano.</p></div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q"><span class="faq-dot"></span><span class="faq-idx">04</span><span class="faq-qtext">¿Cómo consigo mi entrada?</span><span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>Completando el formulario de inscripción disponible en esta página y siguiendo los pasos para realizar el pago. Una vez realizada la inscripción, vas a recibir la información para confirmar tu lugar.</p></div></div>
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-answer-04"><span class="faq-dot"></span><span class="faq-idx">04</span><span class="faq-qtext">¿Cómo consigo mi entrada?</span><span class="plus">+</span></button>
+        <div class="faq-a" id="faq-answer-04"><div class="faq-a-inner"><p>Completando el formulario de inscripción disponible en esta página y siguiendo los pasos para realizar el pago. Una vez realizada la inscripción, vas a recibir la información para confirmar tu lugar.</p></div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q"><span class="faq-dot"></span><span class="faq-idx">05</span><span class="faq-qtext">¿Los encuentros tienen cupos limitados?</span><span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>Sí. Cada encuentro cuenta con capacidad limitada, por lo que recomendamos reservar el lugar con anticipación.</p></div></div>
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-answer-05"><span class="faq-dot"></span><span class="faq-idx">05</span><span class="faq-qtext">¿Los encuentros tienen cupos limitados?</span><span class="plus">+</span></button>
+        <div class="faq-a" id="faq-answer-05"><div class="faq-a-inner"><p>Sí. Cada encuentro cuenta con capacidad limitada, por lo que recomendamos reservar el lugar con anticipación.</p></div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q"><span class="faq-dot"></span><span class="faq-idx">06</span><span class="faq-qtext">¿Dónde se realizan los encuentros?</span><span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>En el salón New Surprise, ubicado en Av. Eva Perón 1865, Santa Rosa, La Pampa.</p></div></div>
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-answer-06"><span class="faq-dot"></span><span class="faq-idx">06</span><span class="faq-qtext">¿Dónde se realizan los encuentros?</span><span class="plus">+</span></button>
+        <div class="faq-a" id="faq-answer-06"><div class="faq-a-inner"><p>En el salón New Surprise, ubicado en Av. Eva Perón 1865, Santa Rosa, La Pampa.</p></div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q"><span class="faq-dot"></span><span class="faq-idx">07</span><span class="faq-qtext">¿Cada encuentro trata un tema diferente?</span><span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>Sí. Cada edición aborda una temática específica de interés para el sector, con especialistas invitados y empresas referentes.</p></div></div>
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-answer-07"><span class="faq-dot"></span><span class="faq-idx">07</span><span class="faq-qtext">¿Cada encuentro trata un tema diferente?</span><span class="plus">+</span></button>
+        <div class="faq-a" id="faq-answer-07"><div class="faq-a-inner"><p>Sí. Cada edición aborda una temática específica de interés para el sector, con especialistas invitados y empresas referentes.</p></div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q"><span class="faq-dot"></span><span class="faq-idx">08</span><span class="faq-qtext">¿Puedo asistir si soy estudiante?</span><span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>Por supuesto. OBRARQ también está pensado para quienes se están formando y quieren acercarse al mundo profesional.</p></div></div>
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-answer-08"><span class="faq-dot"></span><span class="faq-idx">08</span><span class="faq-qtext">¿Puedo asistir si soy estudiante?</span><span class="plus">+</span></button>
+        <div class="faq-a" id="faq-answer-08"><div class="faq-a-inner"><p>Por supuesto. OBRARQ también está pensado para quienes se están formando y quieren acercarse al mundo profesional.</p></div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q"><span class="faq-dot"></span><span class="faq-idx">09</span><span class="faq-qtext">¿Cómo puedo ser sponsor o acompañar OBRARQ?</span><span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>Si querés formar parte del ciclo como sponsor o aliado estratégico, podés comunicarte con nosotros desde la sección Sponsors.</p></div></div>
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-answer-09"><span class="faq-dot"></span><span class="faq-idx">09</span><span class="faq-qtext">¿Cómo puedo ser sponsor o acompañar OBRARQ?</span><span class="plus">+</span></button>
+        <div class="faq-a" id="faq-answer-09"><div class="faq-a-inner"><p>Si querés formar parte del ciclo como sponsor o aliado estratégico, podés comunicarte con nosotros desde la sección Sponsors.</p></div></div>
       </div>
     </div>
   </div>
@@ -765,18 +864,24 @@
     const isOpen = navMenu.classList.toggle('open');
     navToggle.classList.toggle('active', isOpen);
     navToggle.setAttribute('aria-expanded', isOpen);
+    navToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
   });
   navMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{
     navMenu.classList.remove('open');
     navToggle.classList.remove('active');
     navToggle.setAttribute('aria-expanded','false');
+    navToggle.setAttribute('aria-label','Abrir menú');
   }));
 
   // reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
   },{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  revealEls.forEach(el=>{
+    el.classList.add('reveal-ready');
+    io.observe(el);
+  });
 
   // resumen stat counters
   const statCounters = document.querySelectorAll('.resumen-stats .val');
@@ -807,6 +912,7 @@
     slider.style.transform = `translateX(${btn.offsetLeft - 5}px)`;
   }
   window.addEventListener('load', ()=> positionSlider(document.querySelector('.tab-btn.active')));
+  window.addEventListener('resize', ()=> positionSlider(document.querySelector('.tab-btn.active')));
   tabBtns.forEach(btn=>{
     btn.addEventListener('click', ()=>{
       tabBtns.forEach(b=>b.classList.remove('active'));
@@ -821,16 +927,21 @@
   document.querySelectorAll('.faq-item').forEach(item=>{
     const q = item.querySelector('.faq-q');
     const a = item.querySelector('.faq-a');
-    if(item.classList.contains('open')){ a.style.maxHeight = a.scrollHeight + 'px'; }
+    if(item.classList.contains('open')){
+      a.style.maxHeight = a.scrollHeight + 'px';
+      q.setAttribute('aria-expanded','true');
+    }
     q.addEventListener('click', ()=>{
       const isOpen = item.classList.contains('open');
       document.querySelectorAll('.faq-item').forEach(i=>{
         i.classList.remove('open');
         i.querySelector('.faq-a').style.maxHeight = null;
+        i.querySelector('.faq-q').setAttribute('aria-expanded','false');
       });
       if(!isOpen){
         item.classList.add('open');
         a.style.maxHeight = a.scrollHeight + 'px';
+        q.setAttribute('aria-expanded','true');
       }
     });
   });
