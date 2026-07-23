@@ -428,6 +428,16 @@
     .hero .actions .btn{width:100%; justify-content:center; padding:13px 18px;}
     .marquee-strip{padding:8px 0;}
 
+    /* en mobile el texto ocupa casi todo el hero: se sacan los bloques decorativos
+       que caian sobre el texto y se dejan solo 2, bien arrinconados */
+    .hero .blocks-decor span{display:none;}
+    .hero .blocks-decor span:nth-child(1){
+      display:block; top:4%; left:5%; width:20px; height:20px; opacity:.8;
+    }
+    .hero .blocks-decor span:nth-child(4){
+      display:block; bottom:4%; right:5%; width:22px; height:22px; opacity:.35;
+    }
+
     .resumen-grid{gap:40px;}
     .resumen-photo{max-width:280px;}
     .resumen h2{font-size:clamp(28px,9vw,42px);}
