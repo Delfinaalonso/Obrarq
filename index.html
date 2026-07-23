@@ -429,13 +429,19 @@
     .marquee-strip{padding:8px 0;}
 
     /* en mobile el texto ocupa casi todo el hero: se sacan los bloques decorativos
-       que caian sobre el texto y se dejan solo 2, bien arrinconados */
+       que caian sobre el texto y se dejan solo algunos, bien pegados a los bordes */
     .hero .blocks-decor span{display:none;}
     .hero .blocks-decor span:nth-child(1){
       display:block; top:4%; left:5%; width:20px; height:20px; opacity:.8;
     }
     .hero .blocks-decor span:nth-child(4){
       display:block; bottom:4%; right:5%; width:22px; height:22px; opacity:.35;
+    }
+    .hero .blocks-decor span:nth-child(3){
+      display:block; bottom:30%; left:2%; width:14px; height:40px; opacity:.7;
+    }
+    .hero .blocks-decor span:nth-child(5){
+      display:block; top:16%; right:2%; width:16px; height:16px; opacity:.7;
     }
 
     .resumen-grid{gap:40px;}
