@@ -105,8 +105,8 @@
     background:rgba(245,233,220,.85); backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
   }
-  .logo{display:flex; align-items:center; gap:8px; font-weight:800; font-size:22px; letter-spacing:-.01em; color:var(--bordo);}
-  .logo .sq{width:9px; height:9px; background:var(--naranja); display:inline-block;}
+  .logo{display:flex; align-items:center;}
+  .logo img{height:26px; width:auto; display:block;}
   .header-actions{display:flex; align-items:center; gap:12px;}
   nav ul{
     display:flex; flex-direction:column; gap:0; list-style:none;
@@ -414,7 +414,7 @@
     section{padding:52px 0;}
     .wrap{padding:0 6vw;}
     header{padding:13px 4.5vw;}
-    .logo{font-size:20px;}
+    .logo img{height:22px;}
     .header-actions{gap:7px;}
     .header-cta{padding:9px 11px; font-size:11px;}
     .nav-toggle{width:30px; height:30px;}
@@ -508,7 +508,7 @@
   }
   @media(max-width:380px){
     .header-cta{padding:8px 9px; font-size:10px;}
-    .logo{font-size:18px;}
+    .logo img{height:19px;}
     .tab-btn{font-size:10px; padding-left:5px; padding-right:5px;}
     .resumen-stats .stat .label{font-size:8.5px;}
   }
@@ -534,7 +534,7 @@
 </a>
 
 <header>
-  <div class="logo"><span class="sq"></span>obrarq</div>
+  <div class="logo"><img src="assets/logo.svg" alt="Obrarq"></div>
   <nav><ul id="navMenu">
     <li><a href="#cronograma">Encuentros</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
