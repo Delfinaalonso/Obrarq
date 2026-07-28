@@ -777,19 +777,7 @@
     </div>
 
     <div class="sponsor-form-wrap reveal">
-      <button class="btn btn-primary" id="sponsorToggle">Quiero auspiciar →</button>
-      <form id="sponsorForm" class="sponsor-form" onsubmit="return false;">
-        <div class="form-grid">
-          <input type="text" placeholder="Nombre y apellido" required>
-          <input type="text" placeholder="Empresa / marca" required>
-          <input type="text" placeholder="Rubro">
-          <input type="text" placeholder="Ciudad">
-          <input type="tel" placeholder="Teléfono">
-          <input type="email" placeholder="Email" required>
-        </div>
-        <input type="text" placeholder="Redes (Instagram, web, etc.)">
-        <button type="submit" class="btn btn-outline">Enviar</button>
-      </form>
+      <a href="https://wa.me/5492954200393?text=Hola!%20Me%20interesa%20auspiciar%20Obrarq%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener" class="btn btn-primary">Quiero auspiciar →</a>
     </div>
   </div>
 </section>
@@ -966,16 +954,6 @@
         q.setAttribute('aria-expanded','true');
       }
     });
-  });
-
-  // sponsor form toggle
-  const sponsorToggle = document.getElementById('sponsorToggle');
-  const sponsorForm = document.getElementById('sponsorForm');
-  sponsorToggle.addEventListener('click', ()=>{
-    sponsorForm.classList.toggle('show');
-    if(sponsorForm.classList.contains('show')){
-      sponsorForm.scrollIntoView({behavior:'smooth', block:'center'});
-    }
   });
 </script>
 
