@@ -80,38 +80,50 @@
 
   /* STREAM POPUP */
   .stream-overlay{
-    position:fixed; inset:0; background:rgba(20,8,14,.72); backdrop-filter:blur(4px);
+    position:fixed; inset:0; background:rgba(20,8,14,.78); backdrop-filter:blur(4px);
     display:flex; align-items:center; justify-content:center; padding:20px; z-index:1000;
     opacity:0; pointer-events:none; transition:opacity .35s ease;
   }
   .stream-overlay.show{opacity:1; pointer-events:auto;}
   .stream-card{
-    position:relative; background:var(--bordo); color:var(--crema); max-width:380px; width:100%;
-    border-radius:10px; padding:36px 28px 32px; text-align:center; box-shadow:0 30px 60px rgba(0,0,0,.4);
+    position:relative; max-width:400px; width:100%; overflow:hidden;
+    border-radius:12px; box-shadow:0 30px 70px rgba(0,0,0,.5);
     transform:scale(.92) translateY(14px); transition:transform .4s cubic-bezier(.2,.9,.3,1.3);
     border:1px solid rgba(245,233,220,.15);
   }
   .stream-overlay.show .stream-card{transform:scale(1) translateY(0);}
-  .stream-card img.stream-logo{height:30px; width:auto; margin:0 auto 22px;}
+  .stream-card .bg-photo{
+    position:absolute; inset:0; z-index:0;
+    background:
+      linear-gradient(180deg, rgba(59,14,31,.88) 0%, rgba(59,14,31,.94) 55%, var(--bordo-deep) 100%),
+      url('assets/stream-bg.jpg') center/cover no-repeat, var(--bordo);
+  }
+  .stream-card .stream-inner{position:relative; z-index:1; color:var(--crema); text-align:center; padding:42px 30px 34px;}
+  .stream-card img.stream-logo{height:26px; width:auto; margin:0 auto 30px; opacity:.95;}
   .stream-card .stream-kicker{
-    font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:.06em; color:var(--naranja);
-    text-transform:uppercase; margin-bottom:6px; font-weight:700;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.1em; color:var(--naranja);
+    text-transform:uppercase; margin-bottom:14px; font-weight:700;
   }
-  .stream-card h3{font-size:26px; line-height:1.25; margin-bottom:22px; color:var(--crema);}
+  .stream-card .stream-kicker .sq{width:6px; height:6px; background:var(--naranja); display:inline-block;}
+  .stream-card h3{font-size:29px; font-weight:800; line-height:1.2; letter-spacing:-.01em; margin-bottom:30px; color:var(--crema);}
   .stream-card .stream-badge{
-    display:inline-block; background:var(--naranja); color:var(--bordo-deep); font-weight:700;
-    font-size:14px; padding:12px 20px; border-radius:4px; line-height:1.4; margin-bottom:24px;
+    display:flex; align-items:center; justify-content:center; gap:9px;
+    border:1.5px solid rgba(242,118,46,.55); color:var(--naranja); font-weight:700;
+    font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:.03em;
+    padding:11px 18px; border-radius:30px; margin:0 auto 30px; width:fit-content;
+    background:rgba(242,118,46,.08);
   }
-  .stream-card .btn{width:100%; justify-content:center;}
+  .stream-card .btn{width:100%; justify-content:center; padding:16px 24px;}
   .stream-close{
-    position:absolute; top:12px; right:12px; width:30px; height:30px; border-radius:50%;
-    background:rgba(245,233,220,.12); border:none; color:var(--crema); font-size:16px; cursor:pointer;
+    position:absolute; top:14px; right:14px; z-index:2; width:32px; height:32px; border-radius:50%;
+    background:rgba(20,8,14,.4); border:1px solid rgba(245,233,220,.25); color:var(--crema); font-size:15px; cursor:pointer;
     display:flex; align-items:center; justify-content:center; transition:background .2s;
   }
-  .stream-close:hover{background:rgba(245,233,220,.24);}
+  .stream-close:hover{background:rgba(20,8,14,.65);}
   @media(max-width:420px){
-    .stream-card{padding:30px 20px 26px;}
-    .stream-card h3{font-size:22px;}
+    .stream-card .stream-inner{padding:36px 22px 28px;}
+    .stream-card h3{font-size:24px;}
   }
 
   /* WHATSAPP FLOAT BUTTON */
@@ -568,12 +580,15 @@
 
 <div class="stream-overlay" id="streamOverlay" role="dialog" aria-modal="true" aria-label="Aviso de streaming en vivo">
   <div class="stream-card">
+    <div class="bg-photo" aria-hidden="true"></div>
     <button class="stream-close" id="streamClose" aria-label="Cerrar aviso">✕</button>
-    <img src="assets/logo-light.svg" alt="Obrarq" class="stream-logo">
-    <div class="stream-kicker">Obrarq sigue creciendo</div>
-    <h3>Ahora hacemos un stream en Render.</h3>
-    <span class="stream-badge">Lunes y miércoles<br>16 a 18 h</span>
-    <a href="https://www.youtube.com/@streamrender" target="_blank" rel="noopener" class="btn btn-primary">Ver el streaming →</a>
+    <div class="stream-inner">
+      <img src="assets/logo-light.svg" alt="Obrarq" class="stream-logo">
+      <div class="stream-kicker"><span class="sq"></span>Obrarq sigue creciendo</div>
+      <h3>Ahora hacemos un stream en Render.</h3>
+      <div class="stream-badge">🕐 Lunes y miércoles · 16 a 18 h</div>
+      <a href="https://www.youtube.com/@streamrender" target="_blank" rel="noopener" class="btn btn-primary">Ver el streaming →</a>
+    </div>
   </div>
 </div>
 
