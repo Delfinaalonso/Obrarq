@@ -99,14 +99,14 @@
       url('assets/stream-bg.jpg') center/cover no-repeat, var(--bordo);
   }
   .stream-card .stream-inner{position:relative; z-index:1; color:var(--crema); text-align:center; padding:42px 30px 34px;}
-  .stream-card img.stream-logo{height:26px; width:auto; margin:0 auto 30px; opacity:.95;}
   .stream-card .stream-kicker{
     display:flex; align-items:center; justify-content:center; gap:8px;
     font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.1em; color:var(--naranja);
-    text-transform:uppercase; margin-bottom:14px; font-weight:700;
+    text-transform:uppercase; margin-bottom:16px; font-weight:700;
   }
-  .stream-card .stream-kicker .sq{width:6px; height:6px; background:var(--naranja); display:inline-block;}
-  .stream-card h3{font-size:29px; font-weight:800; line-height:1.2; letter-spacing:-.01em; margin-bottom:30px; color:var(--crema);}
+  .stream-card .kicker-logo{height:13px; width:auto;}
+  .stream-card h3{font-size:29px; font-weight:800; line-height:1.3; letter-spacing:-.01em; margin-bottom:30px; color:var(--crema);}
+  .stream-card .render-logo-inline{height:34px; width:auto; vertical-align:-8px; margin-left:2px;}
   .stream-card .stream-badge{
     display:flex; align-items:center; justify-content:center; gap:9px;
     border:1.5px solid rgba(242,118,46,.55); color:var(--naranja); font-weight:700;
@@ -124,6 +124,7 @@
   @media(max-width:420px){
     .stream-card .stream-inner{padding:36px 22px 28px;}
     .stream-card h3{font-size:24px;}
+    .stream-card .render-logo-inline{height:28px; vertical-align:-6px;}
   }
 
   /* WHATSAPP FLOAT BUTTON */
@@ -583,9 +584,8 @@
     <div class="bg-photo" aria-hidden="true"></div>
     <button class="stream-close" id="streamClose" aria-label="Cerrar aviso">✕</button>
     <div class="stream-inner">
-      <img src="assets/logo-light.svg" alt="Obrarq" class="stream-logo">
-      <div class="stream-kicker"><span class="sq"></span>Obrarq sigue creciendo</div>
-      <h3>Ahora hacemos un stream en Render.</h3>
+      <div class="stream-kicker"><img src="assets/logo-light.svg" alt="Obrarq" class="kicker-logo"> sigue creciendo</div>
+      <h3>Ahora hacemos un stream en <img src="assets/logo-render.png" alt="Render" class="render-logo-inline"></h3>
       <div class="stream-badge">🕐 Lunes y miércoles · 16 a 18 h</div>
       <a href="https://www.youtube.com/@streamrender" target="_blank" rel="noopener" class="btn btn-primary">Ver el streaming →</a>
     </div>
